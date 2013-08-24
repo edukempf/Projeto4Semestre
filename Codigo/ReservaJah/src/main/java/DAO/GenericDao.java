@@ -21,21 +21,21 @@ public class GenericDao<T>{
     }
 
     public void insert(T entity) {
-        getEntityManager().getTransaction().begin();
-        getEntityManager().persist(entity);
-        getEntityManager().flush();
-        getEntityManager().getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.flush();
+        em.getTransaction().commit();
     }
 
     public void edit(T entity) {
-        getEntityManager().getTransaction().begin();
-        getEntityManager().merge(entity);
-        getEntityManager().flush();
-        getEntityManager().getTransaction().commit();
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.flush();
+        em.getTransaction().commit();
     }
     
     public T get(int id){
-        return (T) getEntityManager().find(classe, id);
+        return (T) em.find(classe, id);
     }
 
     public void remove(int id) {
@@ -43,13 +43,13 @@ public class GenericDao<T>{
         if(entity==null){
             return;
         }
-        getEntityManager().getTransaction().begin();
-        getEntityManager().remove(entity);
-        getEntityManager().getTransaction().commit();
+        em.getTransaction().begin();
+        em.remove(entity);
+        em.getTransaction().commit();
     }
     
     public List<T> list(){
-        return getEntityManager().createQuery("SELECT e FROM "+classe.getSimpleName()+" e").getResultList();
+        return em.createQuery("SELECT e FROM "+classe.getSimpleName()+" e").getResultList();
     }
 
 }
