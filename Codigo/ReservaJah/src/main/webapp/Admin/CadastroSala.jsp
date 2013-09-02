@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CadastroUsuario
-    Created on : 23/08/2013, 21:51:49
-    Author     : Eduardo
+    Document   : CadastroSala
+    Created on : 02/09/2013, 09:32:13
+    Author     : eduardo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,26 +12,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="../UsuariosServlet" method="post">
+        <form action="../SalaServlet" method="post">
             <div>
                 <label>Nome:</label>
                 <input type="text" name="nome"/><br />
             </div>
             <div>
-                <label>Email:</label>
-                <input type="text" name="email"/><br />
+                <label>Capacidade:</label>
+                <input type="text" name="capacidade"/><br />
             </div>
             <div>
-                <label>Tipo de Usuario</label>
+                <label>Tipo de Sala</label>
                 <select name="tipo">
-                    <option value="1">Professor</option>
+                    <option value="1">Didatica</option>
                 </select>
             </div>
             <div>
-                <label>Registro Acadêmico:</label>
-                <input type="text" name="registro"/><br />
+                <label>Bloco</label>
+                <select name="bloco">
+                    <option value="1">Bloco E</option>
+                </select>
             </div>
-                <input type="submit" value="enviar"/>
+            <input type="submit" value="enviar"/>
         </form>
     </body>
 </html>

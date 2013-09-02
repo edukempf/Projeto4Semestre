@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CadastroTipoUsuario
-    Created on : 23/08/2013, 21:53:49
+    Document   : CadastroTipoSala
+    Created on : 30/08/2013, 21:58:27
     Author     : Eduardo
 --%>
 
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="../TipoUsuarioServlet" method="post">
+        <form action="../TipoSalaServlet" method="post">
             <div>
                 <label>Descrição:</label>
                 <input type="text" name="descricao"/><br />

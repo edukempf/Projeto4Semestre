@@ -4,7 +4,7 @@
  */
 package ServletsAdmin;
 
-import Class.TipoUsuario;
+import Class.Disciplina;
 import Class.Usuario;
 import DAO.GenericDao;
 import java.io.IOException;
@@ -19,29 +19,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Eduardo
  */
-@WebServlet(name = "UsuariosServlet", urlPatterns = {"/UsuariosServlet"})
-public class UsuariosServlet extends HttpServlet {
+@WebServlet(name = "DisciplinaServlet", urlPatterns = {"/DisciplinaServlet"})
+public class DisciplinaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Usuario user= new Usuario();
-        user.setEmail(request.getParameter("email"));
-        user.setRegistro(request.getParameter("registro"));
-        user.setNome(request.getParameter("nome"));
-        user.setSenha(request.getParameter("senha"));
-        GenericDao<TipoUsuario> daoTU=new GenericDao<TipoUsuario>(TipoUsuario.class);
-        user.setTipo(daoTU.get(Long.parseLong(request.getParameter("tipo"))));
-        
+        Disciplina disciplina=new Disciplina();
+        disciplina.setAbreviatura(request.getParameter("abreviatura"));
+        disciplina.setNome(request.getParameter("nome"));
         GenericDao<Usuario> daoU=new GenericDao<Usuario>(Usuario.class);
-        daoU.insert(user);
+        disciplina.setResponsavel(daoU.get(Long.parseLong(request.getParameter("responsavel"))));
+        
+        GenericDao<Disciplina> daoD=new GenericDao<Disciplina>(Disciplina.class);
+        System.out.println("=============>"+disciplina.getResponsavel().getNome());
+        daoD.insert(disciplina);
         
     }
 

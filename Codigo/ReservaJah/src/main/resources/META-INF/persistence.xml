@@ -4,19 +4,20 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>Class.Aula</class>
     <class>Class.Bloco</class>
-    <class>Class.Discilplina</class>
     <class>Class.Sala</class>
     <class>Class.TipoSala</class>
     <class>Class.TipoUsuario</class>
     <class>Class.Usuario</class>
+    <class>Class.Disciplina</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-      <property name="hibernate.connection.password" value="root"/>
+      <property name="hibernate.connection.password" value=""/>
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ReserveJah?zeroDateTimeBehavior=convertToNull"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name = "hibernate.show_sql" value = "true" />
     </properties>
   </persistence-unit>
 </persistence>

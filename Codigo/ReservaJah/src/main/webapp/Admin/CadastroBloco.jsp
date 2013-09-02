@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CadastroTipoUsuario
-    Created on : 23/08/2013, 21:53:49
+    Document   : CadastroBloco
+    Created on : 30/08/2013, 22:04:24
     Author     : Eduardo
 --%>
 
@@ -12,12 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="../TipoUsuarioServlet" method="post">
+        <form action="../BlocoServlet" method="post">
             <div>
-                <label>Descrição:</label>
-                <input type="text" name="descricao"/><br />
-                <input type="submit" value="enviar"/>
+                <label>Nome:</label>
+                <input type="text" name="nome"/><br />
             </div>
+            <input type="submit" value="enviar"/>
         </form>
     </body>
 </html>

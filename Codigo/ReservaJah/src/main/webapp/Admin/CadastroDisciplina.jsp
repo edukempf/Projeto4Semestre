@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CadastroUsuario
-    Created on : 23/08/2013, 21:51:49
+    Document   : CadastroDisciplina
+    Created on : 30/08/2013, 22:18:28
     Author     : Eduardo
 --%>
 
@@ -12,26 +12,22 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="../UsuariosServlet" method="post">
+        <form action="../DisciplinaServlet" method="post">
             <div>
                 <label>Nome:</label>
                 <input type="text" name="nome"/><br />
             </div>
             <div>
-                <label>Email:</label>
-                <input type="text" name="email"/><br />
+                <label>Abreviatura</label>
+                <input type="text" name="abreviatura"/><br />
             </div>
             <div>
-                <label>Tipo de Usuario</label>
-                <select name="tipo">
+                <label>Professor Responsável</label>
+                <select name="responsavel">
                     <option value="1">Professor</option>
                 </select>
             </div>
-            <div>
-                <label>Registro Acadêmico:</label>
-                <input type="text" name="registro"/><br />
-            </div>
-                <input type="submit" value="enviar"/>
+            <input type="submit" value="enviar"/>
         </form>
     </body>
 </html>

@@ -4,8 +4,9 @@
  */
 package ServletsAdmin;
 
-import Class.TipoUsuario;
-import Class.Usuario;
+import Class.Bloco;
+import Class.Sala;
+import Class.TipoSala;
 import DAO.GenericDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,32 +18,33 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Eduardo
+ * @author eduardo
  */
-@WebServlet(name = "UsuariosServlet", urlPatterns = {"/UsuariosServlet"})
-public class UsuariosServlet extends HttpServlet {
-
+@WebServlet(name = "SalaServlet", urlPatterns = {"/SalaServlet"})
+public class SalaServlet extends HttpServlet {
+ 
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Sala sala= new Sala();
+        sala.setNome(request.getParameter("nome"));
+        sala.setCapacidade(Integer.parseInt(request.getParameter("capacidade")));
         
-        Usuario user= new Usuario();
-        user.setEmail(request.getParameter("email"));
-        user.setRegistro(request.getParameter("registro"));
-        user.setNome(request.getParameter("nome"));
-        user.setSenha(request.getParameter("senha"));
-        GenericDao<TipoUsuario> daoTU=new GenericDao<TipoUsuario>(TipoUsuario.class);
-        user.setTipo(daoTU.get(Long.parseLong(request.getParameter("tipo"))));
+        GenericDao<Bloco> daoB=new GenericDao<Bloco>(Bloco.class);
+        Bloco bloco=daoB.get(Long.parseLong(request.getParameter("bloco")));
+        sala.setBlocoPertencente(bloco);
         
-        GenericDao<Usuario> daoU=new GenericDao<Usuario>(Usuario.class);
-        daoU.insert(user);
+        GenericDao<TipoSala> daoT=new GenericDao<TipoSala>(TipoSala.class);
+        TipoSala tipoSala=daoT.get(Long.parseLong(request.getParameter("tipo")));
+        sala.setTipoSala(tipoSala);
         
     }
 
+  
 }

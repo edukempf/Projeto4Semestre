@@ -4,8 +4,7 @@
  */
 package ServletsAdmin;
 
-import Class.TipoUsuario;
-import Class.Usuario;
+import Class.TipoSala;
 import DAO.GenericDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,30 +18,21 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Eduardo
  */
-@WebServlet(name = "UsuariosServlet", urlPatterns = {"/UsuariosServlet"})
-public class UsuariosServlet extends HttpServlet {
+@WebServlet(name = "TipoSalaServlet", urlPatterns = {"/TipoSalaServlet"})
+public class TipoSalaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Usuario user= new Usuario();
-        user.setEmail(request.getParameter("email"));
-        user.setRegistro(request.getParameter("registro"));
-        user.setNome(request.getParameter("nome"));
-        user.setSenha(request.getParameter("senha"));
-        GenericDao<TipoUsuario> daoTU=new GenericDao<TipoUsuario>(TipoUsuario.class);
-        user.setTipo(daoTU.get(Long.parseLong(request.getParameter("tipo"))));
-        
-        GenericDao<Usuario> daoU=new GenericDao<Usuario>(Usuario.class);
-        daoU.insert(user);
-        
+        TipoSala tsala=new TipoSala();
+        tsala.setDescricao(request.getParameter("descricao"));
+        GenericDao<TipoSala> dao=new GenericDao<TipoSala>(TipoSala.class);
+        dao.insert(tsala);
     }
 
 }

@@ -37,7 +37,7 @@ public class Aula implements Serializable {
     @Enumerated(EnumType.STRING)
     private Horario fim;
     @ManyToOne
-    private Discilplina disciplina;
+    private Disciplina disciplina;
     private boolean status;
     @OneToOne
     private Sala sala;
@@ -98,11 +98,11 @@ public class Aula implements Serializable {
         this.status = status;
     }
 
-    public Discilplina getDisciplina() {
+    public Disciplina getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(Discilplina disciplina) {
+    public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
 

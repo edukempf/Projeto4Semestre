@@ -34,11 +34,11 @@ public class GenericDao<T>{
         em.getTransaction().commit();
     }
     
-    public T get(int id){
+    public T get(Long id){
         return (T) em.find(classe, id);
     }
 
-    public void remove(int id) {
+    public void remove(Long id) {
         T entity=get(id);
         if(entity==null){
             return;

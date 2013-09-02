@@ -5,13 +5,11 @@
 package Class;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -19,7 +17,7 @@ import javax.persistence.ManyToOne;
  * @author eduardo
  */
 @Entity
-public class Discilplina implements Serializable {
+public class Disciplina implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +26,6 @@ public class Discilplina implements Serializable {
     private String nome;
     @Column(length = 10)
     private String abreviatura;
-    
     @ManyToOne
     private Usuario responsavel;
 

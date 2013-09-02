@@ -5,14 +5,12 @@
 package Class;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,6 +29,8 @@ public class Usuario implements Serializable {
     private String registro;
     @Column(length = 50)
     private String senha;
+    @OneToOne
+    private TipoUsuario tipo;
     
 
     public Long getId() {
@@ -71,6 +71,14 @@ public class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
 
     
