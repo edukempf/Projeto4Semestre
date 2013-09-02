@@ -1,0 +1,138 @@
+/* 
+    Document   : estilo
+    Created on : 02/09/2013, 10:29:56
+    Author     : eduardo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+body{
+    background-color: #F8F8FF;
+}
+
+
+/*div principal*/
+#tudo{
+    width: 75%;
+    margin: 0 auto;
+}
+
+
+/*div referente ao topo da página*/
+#topo{
+    height: 180px;
+    background-image: url('../img/logo.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #F8F8FF;
+}
+
+
+/*div menu lateral*/
+#menu-lateral{
+    width: 25%;
+    margin-top: 15px;
+    height: 500px;
+    float: left;
+    background-color: #DCDCDC;
+}
+#menu{
+    font-family: Arial;
+    font-size: 20px;
+    margin: 0;
+    margin-left: -40px;
+    display: block;
+}
+#menu li{
+    list-style: none;
+    margin: 0;
+    border-bottom: 1px solid #FF0000;
+}
+#menu li a{
+    display: block;
+    font-weight: bold;
+    border-left: 5px solid #FF0000;
+    text-decoration: none;
+    color:black;
+
+}
+#menu li a:hover{
+    border-left: 5px solid #8B0000;
+    background-color: #CDC9C9;
+}
+
+/*div do conteúdo do site*/
+#conteudo{
+    height: 500px;
+    background-color: #DCDCDC;
+}
+#conteudo table{
+    margin-top: 15px;
+    margin-left: 280px;
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 65%;
+    text-align: center;
+}
+#conteudo table td{
+    border: 1px solid #C1CDCD;
+}
+#conteudo table th{
+    border: 1px solid #C1CDCD;
+}
+h5.title{
+    margin-top: 15px;
+    margin-left: 280px;
+    margin-bottom: 15px;
+    font-family: Arial;
+    font-size: 24px;
+}
+/*div do rodapé*/
+#rodape{
+    height: 75px;
+    background-color: #BEBEBE;
+}
+#rodape  span{
+    font-weight: bold;
+}
+#rodape p{
+    margin:0px;
+    padding-top: 30px;
+    font-family: Arial;
+    text-align: center;
+}
+
+/*Botão*/
+button{
+    
+}
+.btnAdicionar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#2773d6;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnAdicionar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
