@@ -3,21 +3,12 @@
     Created on : 30/08/2013, 21:58:27
     Author     : Eduardo
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="../TipoSalaServlet" method="post">
-            <div>
-                <label>DescriÃ§Ã£o:</label>
-                <input type="text" name="descricao"/><br />
-                <input type="submit" value="enviar"/>
-            </div>
-        </form>
-    </body>
-</html>
+<form id='form' action="../TipoSalaServlet" method="post">
+    <div>
+        <input type="hidden" name="id" value="${tipoSalaEditar.id}"/>
+        <label>Descrição:</label>
+        <input type="text" value="${tipoSalaEditar.descricao}" name="descricao"/><br />
+    </div>
+    <button type="button" onclick="voltarListarTipoSala('ListagemTipoSala.jsp');" value="" class="btnCancelar">Cancelar</button>
+    <button type="button" onclick="cadastrarTipoSala();" value="" class="btnConfirmar">Confirmar</button>
+</form>

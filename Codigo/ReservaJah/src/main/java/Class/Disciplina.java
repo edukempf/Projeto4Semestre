@@ -28,6 +28,8 @@ public class Disciplina implements Serializable {
     private String abreviatura;
     @ManyToOne
     private Usuario responsavel;
+    @Column(length = 3)
+    private int numParticipantes;
 
     public Long getId() {
         return id;
@@ -59,6 +61,14 @@ public class Disciplina implements Serializable {
 
     public void setResponsavel(Usuario responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public int getNumParticipantes() {
+        return numParticipantes;
+    }
+
+    public void setNumParticipantes(int numParticipantes) {
+        this.numParticipantes = numParticipantes;
     }
 
     

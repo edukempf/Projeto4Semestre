@@ -136,3 +136,57 @@ button{
     position:relative;
     top:2px;
 }
+.btnConfirmar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#00CD00;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnConfirmar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
+.btnCancelar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#EE0000;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnCancelar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
+
+.modificar{
+    cursor: pointer;
+}

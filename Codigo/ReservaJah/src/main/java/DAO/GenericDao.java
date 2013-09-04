@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 public class GenericDao<T>{
 
@@ -49,7 +50,13 @@ public class GenericDao<T>{
     }
     
     public List<T> list(){
-        return em.createQuery("SELECT e FROM "+classe.getSimpleName()+" e").getResultList();
+        return em.createQuery("FROM "+classe.getSimpleName()).getResultList();
+    }
+    
+    public List<T> listParamInteiro(Long parametro){
+        Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE tipo.id = :id");
+        q.setParameter("id", parametro);
+        return q.getResultList();
     }
 
 }

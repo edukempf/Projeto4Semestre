@@ -6,32 +6,36 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <form action="../UsuariosServlet" method="post">
-            <div>
-                <label>Nome:</label>
-                <input type="text" name="nome"/><br />
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="text" name="email"/><br />
-            </div>
-            <div>
-                <label>Tipo de Usuario</label>
-                <select name="tipo">
-                    <option value="1">Professor</option>
-                </select>
-            </div>
-            <div>
-                <label>Registro Acadêmico:</label>
-                <input type="text" name="registro"/><br />
-            </div>
-                <input type="submit" value="enviar"/>
-        </form>
-    </body>
-</html>
+<script language="javascript" src="../js/projeto.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<form id="form" action="../UsuariosServlet" method="post">
+    <input type="hidden" name="id" value="${usuarioEditar.id}"/>
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="nome" value="${usuarioEditar.nome}"/><br />
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" name="email" value="${usuarioEditar.email}"/><br />
+    </div>
+    <div>
+        <label>Tipo de Usuário</label>
+        <select name="tipo">
+            <c:choose>
+                <c:when test="${listaTipoUsuario.size()!=0}">
+                    <c:forEach items="${listaTipoUsuario}" var="tipo">
+                        <option value="${tipo.id}" ${usuarioEditar.tipo.id == tipo.id? "selected" :""}>${tipo.descricao}</option>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <option>Cadastre um tipo de usuário antes</option>
+                </c:otherwise>
+            </c:choose>
+        </select>
+    </div>
+    <div>
+        <label>Registro Acadêmico:</label>
+        <input type="text" name="registro" value="${usuarioEditar.registro}"/><br />    </div>
+    <button type="button" onclick="voltarListarUsuario('ListagemUsuario.jsp');" value="" class="btnCancelar">Cancelar</button>
+    <button type="button" onclick="cadastrarUsuario();" value="" class="btnConfirmar">Confirmar</button>
+</form>
