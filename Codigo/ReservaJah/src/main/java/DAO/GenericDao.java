@@ -63,5 +63,10 @@ public class GenericDao<T>{
         q.setParameter("id", parametro);
         return q.getResultList();
     }
+    public List<T> listAulasSalas(Long parametro){
+        Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE sala.id = :id");
+        q.setParameter("id", parametro);
+        return q.getResultList();
+    }
 
 }

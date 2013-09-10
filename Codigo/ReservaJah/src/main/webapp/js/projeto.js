@@ -121,7 +121,7 @@ function telaCadastroDisciplina() {
 }
 function telaCadastroAula() {
     $.ajax({
-        url: $(this).attr('href'),
+        url: '../BlocoServlet?op=listar',
         type: 'GET',
         success: function(ret) {
             $('#conteudo').load('CadastroAula.jsp');
@@ -357,6 +357,15 @@ function editarDisciplina(id) {
         }
     });
 }
+function editarAula(id) {
+    $.ajax({
+        url: '../AulaServlet?op=editar&id=' + id,
+        type: 'GET',
+        success: function(ret) {
+            telaCadastroAula();
+        }
+    });
+}
 function apagarBloco(id) {
     $.ajax({
         url: '../BlocoServlet?op=apagar&id=' + id,
@@ -411,6 +420,15 @@ function apagarDisciplina(id) {
         }
     });
 }
+function apagarAula(id) {
+    $.ajax({
+        url: '../AulaServlet?op=apagar&id=' + id,
+        type: 'GET',
+        success: function(ret) {
+            voltarListarAula('ListagemAula.jsp');
+        }
+    });
+}
 function listaSala() {
     $.ajax({
         url: '../SalaServlet?op=listaSalasBloco&id=' + $('#bloco').val(),
@@ -423,7 +441,7 @@ function listaSala() {
 
 function listaNovoHorario() {
     $.ajax({
-        url: '../AulaServlet?dia='+$('#dia').val()+'&op=listaHoraFim&id=' + $('#horaInicio').val(),
+        url: '../AulaServlet?dia=' + $('#dia').val() + '&op=listaHoraFim&id=' + $('#horaInicio').val(),
         type: 'GET',
         success: function(ret) {
             voltarListarDisciplina('CadastroAula.jsp');
@@ -443,7 +461,7 @@ function mudarCor() {
         linhaI++;
     }
 }
-function listaAulasSala(){
+function listaAulasSala() {
     $.ajax({
         url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val(),
         type: 'GET',

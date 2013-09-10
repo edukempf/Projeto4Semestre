@@ -8,6 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <form id="form">
+    <input type="hidden" name="idAula" value="${aulaEditar.id}"/>
     <h5 class="title">Gerenciar Aulas</h5>
     <div>
         <label>Bloco</label>
@@ -16,7 +17,7 @@
                 <c:when test="${listaBloco.size()!=0}">
                     <option value="0">Selecione um bloco</option>
                     <c:forEach items="${listaBloco}" var="bloco">
-                        <option value="${bloco.id}" ${idBloco == bloco.id? "selected" :""}>${bloco.nome}</option>
+                        <option value="${bloco.id}" ${idBloco == bloco.id? "selected" :""} ${aulaEditar.sala.blocoPertencente.id == bloco.id? "selected" :""}>${bloco.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -32,7 +33,7 @@
                 <c:when test="${listaSalaBloco.size()!=0}">
                     <option value="0">Selecione uma sala</option>
                     <c:forEach items="${listaSalaBloco}" var="sala">
-                        <option value="${sala.id}" ${idSala == sala.id? "selected" :""}>${sala.nome}</option>
+                        <option value="${sala.id}" ${idSala == sala.id? "selected" :""} ${aulaEditar.sala.id == sala.id? "selected" :""} >${sala.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -44,10 +45,10 @@
     <div>
         <label>Disciplina:</label>
         <select id="disciplina" name="disciplina" onchange="">
-        <c:choose>
+            <c:choose>
                 <c:when test="${disciplinas.size()!=0}">
                     <c:forEach items="${disciplinas}" var="disciplina" varStatus="aa">
-                        <option value="${disciplina.id}">${disciplina.nome}</option>
+                        <option value="${disciplina.id}" ${aulaEditar.disciplina.id == disciplina.id? "selected" :""}>${disciplina.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -60,7 +61,7 @@
         <label>Dia da semana da aula</label>
         <select id="dia" name="dia" onchange="setaColuna();">
             <c:forEach items="${dias}" var="dia" varStatus="aa">
-                <option value="${aa.count}" ${diaSelecionado == aa.count? "selected" :""}><c:out value="${dia}"/></option>
+                <option value="${aa.count}" ${aulaEditar.dia == dia? "selected" :""} ${diaSelecionado == aa.count? "selected" :""}><c:out value="${dia}"/></option>
             </c:forEach> 
         </select>
     </div>
@@ -68,7 +69,7 @@
         <label>Hora inicio da aula</label>
         <select id="horaInicio" name="hInicio" onchange="listaNovoHorario();">
             <c:forEach items="${horarios}" var="horario" varStatus="aa">
-                <option value="${aa.count}" ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
+                <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
             </c:forEach>
         </select>
     </div>
@@ -78,7 +79,7 @@
             <c:choose>
                 <c:when test="${horaFim.size()!=0}">
                     <c:forEach items="${horaFim}" var="horario" varStatus="aa">
-                        <option value="${aa.count}">${horario}</option>
+                        <option value="${aa.count}" ${aulaEditar.fim == horario? "selected" :""} >${horario}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -89,11 +90,11 @@
     </div>
     <div>
         <label>Dia inicio aula</label>
-        <input type="text" name="diaInicio"/>
+        <input type="text" name="diaInicio" value="<c:out value="${dataInicio}"/>"/>
     </div>
     <div>
         <label>Dia fim aula</label>
-        <input type="text" name="diaFim"/>
+        <input type="text" name="diaFim" value="<c:out value="${dataFim}"/>"/>
     </div>
     <table>
         <c:forEach items="${horarios}" var="horario" varStatus="local">
@@ -108,7 +109,20 @@
             <tr>
                 <td><c:out value="${horario}"/></td>
                 <c:forEach items="${dias}" var="dia" varStatus="aa">
-                    <td id="<c:out value="${local.count}"/><c:out value="${aa.count}"/>"></td>
+                    <td id="<c:out value="${local.count}"/><c:out value="${aa.count}"/>">
+                        <c:forEach items="${listaAulaSala}" var="aula">
+                            <c:if test="${aula.inicio==horario}">
+                                <c:if test="${aula.dia==dia}">
+                                    <input type="hidden" name="aula" value="inicio"/>
+                                </c:if>
+                            </c:if>
+                            <c:if test="${aula.fim==horario}">
+                                <c:if test="${aula.dia==dia}">
+                                    <input type="hidden" name="aula" value="fim"/>
+                                </c:if>
+                            </c:if> 
+                        </c:forEach>
+                    </td>
                 </c:forEach>
             </tr>
         </c:forEach>
@@ -116,3 +130,26 @@
     <button type="button" onclick="voltarListarAula('ListagemAula.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="cadastrarAula();" value="" class="btnConfirmar">Confirmar</button>
 </form>
+<script>
+            $(document).ready(function() {
+                var att;
+                for (var i = 1; i < 7; i++) {
+                    for (var j = 1; j < 18; j++) {
+                        att = "#" + j + i;
+                        if ($(att).html().trim()) {
+                            var aux = j;
+                            $(att).css('background-color', 'red');
+                            while (!$(att).html().match("fim")) {
+                                aux++;
+                                att = "#" + aux + i;
+                                $(att).css('background-color', 'red');
+                                if ($(att).html().trim() !== "") {
+                                    $(att).css('background-color', 'red');
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+</script>
