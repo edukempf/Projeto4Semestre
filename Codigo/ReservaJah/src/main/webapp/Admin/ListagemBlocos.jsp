@@ -3,7 +3,6 @@
     Created on : 03/09/2013, 09:10:25
     Author     : eduardo
 --%>
-<script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 

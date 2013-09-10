@@ -58,5 +58,10 @@ public class GenericDao<T>{
         q.setParameter("id", parametro);
         return q.getResultList();
     }
+    public List<T> listSalasBloco(Long parametro){
+        Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE blocoPertencente.id = :id");
+        q.setParameter("id", parametro);
+        return q.getResultList();
+    }
 
 }

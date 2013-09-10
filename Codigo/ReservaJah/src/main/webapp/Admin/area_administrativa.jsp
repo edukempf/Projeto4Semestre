@@ -20,7 +20,7 @@
             <div id="topo"></div>
             <div id="menu-lateral">
                 <ul id="menu">
-                    <li><a id="listaAulas" href="#"> Gerenciar Aulas</a></li>
+                    <li><a id="listaAula" href="../AulaServlet?op=listar"> Gerenciar Aulas</a></li>
                     <li><a id="listaBlocos" href="../BlocoServlet?op=listar"> Gerenciar Blocos</a></li>
                     <li><a id="listaDisciplina" href="../DisciplinaServlet?op=listar"> Gerenciar Disciplinas</a></li>
                     <li><a id="listaSala" href="../SalaServlet?op=listar"> Gerenciar Salas</a></li>

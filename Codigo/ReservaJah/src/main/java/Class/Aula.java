@@ -38,9 +38,9 @@ public class Aula implements Serializable {
     private Horario fim;
     @ManyToOne
     private Disciplina disciplina;
-    private boolean status;
     @OneToOne
     private Sala sala;
+    private boolean status;
     
     public Long getId() {
         return id;

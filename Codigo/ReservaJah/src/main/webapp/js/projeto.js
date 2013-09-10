@@ -2,6 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+var coluna = 1;
+var linhaI = 0;
+var linhaF = 0;
 $(document).ready(function() {
     $('#listaBlocos').click(function(event) {
         event.preventDefault();
@@ -63,6 +66,16 @@ $(document).ready(function() {
             }
         });
     });
+    $('#listaAula').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'GET',
+            success: function(ret) {
+                $('#conteudo').load('ListagemAula.jsp');
+            }
+        });
+    });
 });
 function telaCadastroBloco() {
     $('#conteudo').load('CadastroBloco.jsp');
@@ -103,6 +116,15 @@ function telaCadastroDisciplina() {
         type: 'GET',
         success: function(ret) {
             $('#conteudo').load('CadastroDisciplina.jsp');
+        }
+    });
+}
+function telaCadastroAula() {
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'GET',
+        success: function(ret) {
+            $('#conteudo').load('CadastroAula.jsp');
         }
     });
 }
@@ -202,6 +224,22 @@ function cadastrarDisciplina() {
         }
     });
 }
+function cadastrarAula() {
+    $.ajax({
+        url: '../AulaServlet',
+        data: $('#form').serialize(),
+        type: 'POST',
+        success: function(ret) {
+            $.ajax({
+                url: '../AulaServlet?op=listar',
+                type: 'GET',
+                success: function(ret) {
+                    $('#conteudo').load('ListagemAula.jsp');
+                }
+            });
+        }
+    });
+}
 function voltarListarBloco(caminho) {
     $.ajax({
         url: '../BlocoServlet?op=listar',
@@ -250,6 +288,15 @@ function voltarListarUsuario(caminho) {
 function voltarListarDisciplina(caminho) {
     $.ajax({
         url: '../DisciplinaServlet?op=listar',
+        type: 'GET',
+        success: function(ret) {
+            $('#conteudo').load(caminho);
+        }
+    });
+}
+function voltarListarAula(caminho) {
+    $.ajax({
+        url: '../AulaServlet?op=listar',
         type: 'GET',
         success: function(ret) {
             $('#conteudo').load(caminho);
@@ -361,6 +408,47 @@ function apagarDisciplina(id) {
         type: 'GET',
         success: function(ret) {
             voltarListarDisciplina('ListagemDisciplina.jsp');
+        }
+    });
+}
+function listaSala() {
+    $.ajax({
+        url: '../SalaServlet?op=listaSalasBloco&id=' + $('#bloco').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarListarDisciplina('CadastroAula.jsp');
+        }
+    });
+}
+
+function listaNovoHorario() {
+    $.ajax({
+        url: '../AulaServlet?dia='+$('#dia').val()+'&op=listaHoraFim&id=' + $('#horaInicio').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarListarDisciplina('CadastroAula.jsp');
+            linhaI = $('#horaInicio').val();
+        }
+    });
+}
+function setaColuna() {
+    coluna = $('#dia').val();
+}
+function mudarCor() {
+
+    linhaF = $('#horaFim').val();
+    for (var i = 1; i <= linhaF; i++) {
+        var att = "#" + linhaI + coluna;
+        $(att).css('background-color', 'blue');
+        linhaI++;
+    }
+}
+function listaAulasSala(){
+    $.ajax({
+        url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarListarDisciplina('CadastroAula.jsp');
         }
     });
 }

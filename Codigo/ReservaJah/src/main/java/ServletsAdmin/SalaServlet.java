@@ -45,6 +45,10 @@ public class SalaServlet extends HttpServlet {
             session.setAttribute("salaEditar", sala);
         }else if(param.equals("apagar")){
             daoS.remove(Long.parseLong(request.getParameter("id")));
+        }else if(param.equals("listaSalasBloco")){
+            ArrayList<Sala> listaSalaBloco=(ArrayList<Sala>) daoS.listSalasBloco(Long.parseLong(request.getParameter("id")));
+            session.setAttribute("idBloco", Long.parseLong(request.getParameter("id")));
+            session.setAttribute("listaSalaBloco", listaSalaBloco);
         }
         response.sendRedirect("Admin/area_administrativa.jsp");
     }
