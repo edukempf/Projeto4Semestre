@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,23 +16,17 @@
         <script language="javascript" src="../js/projeto.js"></script>
     </head>
     <body>
-        <div id="tudo">
-            <div id="topo"></div>
-            <div id="menu-lateral">
-                <ul id="menu" >
-                    <li><a href="#"> Gerenciar Aulas</a></li>
-                    <li><a href="#"> Gerenciar Aulas</a></li>
-                    <li><a href="#"> Gerenciar Aulas</a></li>
-                    <li><a href="#"> Gerenciar Aulas</a></li>
-                    <li><a href="#"> Gerenciar Aulas</a></li>
-                </ul>
-            </div>
-            <div id="conteudo">
-                
-            </div>
-            <div id="rodape">
-                <p><span>ReserveJAH.com</span>&copy 2013. Todos os direitos reservados</p>
-            </div>
+        <div>
+            <form action="LoginServlet" method="post">
+            <label>Login</label>
+            <input type="text" name="login" />
+            <label>Senha</label>
+            <input type="text" name="senha" />
+            <input type="submit" value="login"/>
+            </form>
+            <br />
+            
+            <label><c:out value="${erro}"/></label>
         </div>
     </body>
 </html>

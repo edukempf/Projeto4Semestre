@@ -446,6 +446,7 @@ function listaNovoHorario() {
         success: function(ret) {
             voltarListarDisciplina('CadastroAula.jsp');
             linhaI = $('#horaInicio').val();
+            
         }
     });
 }
@@ -453,14 +454,21 @@ function setaColuna() {
     coluna = $('#dia').val();
 }
 function mudarCor() {
-
-    linhaF = $('#horaFim').val();
+    var aux=linhaI;
     for (var i = 1; i <= linhaF; i++) {
-        var att = "#" + linhaI + coluna;
+        var att = "#" + aux + coluna;
+        $(att).css('background-color', 'white');
+        aux++;
+    }
+    linhaF = $('#horaFim').val();
+    var aux=linhaI;
+    for (var i = 1; i <= linhaF; i++) {
+        var att = "#" + aux + coluna;
         $(att).css('background-color', 'blue');
-        linhaI++;
+        aux++;
     }
 }
+
 function listaAulasSala() {
     $.ajax({
         url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val(),

@@ -15,6 +15,10 @@
         <input type="text" name="nome" value="${usuarioEditar.nome}"/><br />
     </div>
     <div>
+        <label>Senha:</label>
+        <input type="text" name="senha"/><br />
+    </div>
+    <div>
         <label>Email:</label>
         <input type="text" name="email" value="${usuarioEditar.email}"/><br />
     </div>
