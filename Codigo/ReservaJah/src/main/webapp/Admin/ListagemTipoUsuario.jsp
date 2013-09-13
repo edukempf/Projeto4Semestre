@@ -19,8 +19,8 @@
             <c:forEach items="${listaTipoUsuario}" var="tipo">
                 <tr>
                     <td><c:out value="${tipo.descricao}"/></td>
-                    <td><a class="modificar" onclick="editarTipoUsuario(<c:out value="${tipo.id}"/>);"><img src="../img/editar.png"/></a></td>
-                    <td><a class="modificar" onclick="apagarTipoUsuario(<c:out value="${tipo.id}"/>);"><img src="../img/apagar.png"/></a></td>
+                    <td><a class="modificar" onclick="editarTipoUsuario(<c:out value="${tipo.id}"/>);"><img src="../img/alterar.png"/></a></td>
+                    <td><a class="modificar" onclick="apagarTipoUsuario(<c:out value="${tipo.id}"/>);"><img src="../img/delete.png"/></a></td>
                 </tr>
             </c:forEach>
         </c:when>

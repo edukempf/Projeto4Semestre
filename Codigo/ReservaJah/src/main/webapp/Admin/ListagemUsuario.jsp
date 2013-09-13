@@ -22,8 +22,8 @@
                     <td><c:out value="${user.nome}"/></td>
                     <td><c:out value="${user.tipo.descricao}"/></td>
                     <td><c:out value="${user.email}"/></td>
-                    <td><a class="modificar" onclick="editarUsuario(<c:out value="${user.id}"/>);"><img src="../img/editar.png"/></a></td>
-                    <td><a class="modificar" onclick="apagarUsuario(<c:out value="${user.id}"/>);"><img src="../img/apagar.png"/></a></td>
+                    <td><a class="modificar" onclick="editarUsuario(<c:out value="${user.id}"/>);"><img src="../img/alterar.png"/></a></td>
+                    <td><a class="modificar" onclick="apagarUsuario(<c:out value="${user.id}"/>);"><img src="../img/delete.png"/></a></td>
                 </tr>
             </c:forEach>
         </c:when>

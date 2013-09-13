@@ -1,0 +1,214 @@
+/* 
+    Document   : estilo
+    Created on : 09/09/2013, 10:29:56
+    Author     : Ligue01
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body {
+
+    background-color:#00BFFF;
+    font: normal 13px Georgia, "Times New Roman", Times, serif;
+}
+
+#page {
+    width: 980px;
+    margin: 0 auto;
+    background-color: #87CEFA;
+}
+
+#header{
+
+    height: 200px;
+    width: 980px;
+    background-color: #87CEFA;
+    background-image: url("../img/topoPaginas.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #FFFFFF;
+}
+
+/*div menu lateral*/
+#menu-lateral{
+    width: 13%;
+    margin-top: 250px;
+    height: 200px;
+    float: left;
+    background-color: #00BFFF;
+
+}
+#menu{
+    font-family: Arial;
+    font-size: 16px;
+    margin: 0;
+    margin-left: -40px;
+    display: block;
+}
+#menu li{
+    list-style: none;
+    margin: 0;
+    border-bottom: 1px solid #7FFF00;
+}
+#menu li a{
+    display: block;
+    font-weight: bold;
+    border-left: 5px solid #00EE00;
+    text-decoration: none;
+    color:black;
+
+}
+#menu li a:hover{
+    border-left: 5px solid #8B0000;
+    background-color: #7EC0EE;
+}
+
+/*Conteudo*/
+#content{
+
+    height: 520px;
+    background: #FFFFFF;
+    background-repeat: no-repeat;
+    text-align: left;
+    padding: 25px;
+
+}
+#conteudo {
+    overflow:hidden;
+    width:600px;
+    margin:0 auto;
+    padding:10px 10px 10px;
+    border:0px ;
+    text-align:left;
+}
+#conteudo table{
+    margin-top: 15px;
+    /*margin-right: 200px;*/
+    margin-left: 150px;
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 50%;
+    text-align: center;
+}
+#conteudo table td{
+    border: 1px solid #C1CDCD;
+}
+#conteudo table th{
+    border: 1px solid #C1CDCD;
+}
+h5.title{
+    margin-top: 15px;
+    margin-left: 200px;
+    margin-bottom: 15px;
+    font-family: Arial;
+    font-size: 24px;
+}
+
+/*div do rodapé*/
+#rodape{
+
+    width:800px;
+    background-color: #87CEFA;
+    margin-left: 175px
+}
+#rodape  span{
+    font-weight: bold;
+}
+#rodape p{
+    margin:0px;
+    padding-top: 30px;
+    font-family: Arial;
+    text-align: center;
+}            
+
+a {
+    font-size: 16Fpx;
+}
+
+
+/*Botão*/
+button{
+    
+}
+.btnAdicionar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#2773d6;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnAdicionar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
+.btnConfirmar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#00CD00;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnConfirmar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
+.btnCancelar{
+    font:bold 12px Tahoma, Geneva, sans-serif;
+    font-style:normal;
+    float: right;
+    color:#ffffff;
+    background:#EE0000;
+    border:0px solid #ffffff;
+    text-shadow:0px 0px 1px #222222;
+    box-shadow:2px 2px 5px #000000;
+    -moz-box-shadow:2px 2px 5px #000000;
+    -webkit-box-shadow:2px 2px 5px #000000;
+    border-radius:10px 10px 0px 10px;
+    -moz-border-radius:10px 10px 0px 10px;
+    -webkit-border-radius:10px 10px 0px 10px;
+    width:100px;
+    padding:9px 16px;
+    cursor:pointer;
+    margin-top: 15px;
+    margin-right: 60px;
+}
+.btnCancelar:active{
+    cursor:pointer;
+    position:relative;
+    top:2px;
+}
+
+.modificar{
+    cursor: pointer;
+}

@@ -1,101 +1,81 @@
-/* 
-    Document   : estilo
-    Created on : 02/09/2013, 10:29:56
-    Author     : eduardo
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-root { 
-    display: block;
+body {
+    /*background-image: url("imagens/fundo.gif");*/
+    background-color:#00BFFF;
+    font: normal 13px Georgia, "Times New Roman", Times, serif;
 }
 
-
-body{
-    background-color: #F8F8FF;
-}
-
-
-/*div principal*/
-#tudo{
-    width: 75%;
+#page {
+    width: 980px;
     margin: 0 auto;
+    background-color: #87CEFA;
 }
 
+#header{
 
-/*div referente ao topo da página*/
-#topo{
-    height: 180px;
-    background-image: url('../img/logo.png');
+    height: 200px;
+    width: 980px;
+    background-color: #87CEFA;
+    background-image: url("../img/logo.png");
     background-repeat: no-repeat;
-    background-position: center center;
-    background-color: #F8F8FF;
+    /*background-position: center;*/
+    color: #FFFFFF;
 }
 
-
-/*div menu lateral*/
-#menu-lateral{
-    width: 25%;
-    margin-top: 15px;
-    height: 500px;
-    float: left;
-    background-color: #DCDCDC;
+/*Login*/
+#login {
+    margin: 28px 10px 10px 10px;
+    height: 100px;
+    width: 170px;
+    float: right;
+    padding: 10px;
 }
-#menu{
-    font-family: Arial;
-    font-size: 20px;
-    margin: 0;
-    margin-left: -40px;
+
+#login label{
+    width: 200px;
+    font-size: 10pt;
+    text-align: left;
     display: block;
 }
-#menu li{
-    list-style: none;
-    margin: 0;
-    border-bottom: 1px solid #FF0000;
-}
-#menu li a{
+
+#login label input{
+    width: 160px;
     display: block;
-    font-weight: bold;
-    border-left: 5px solid #FF0000;
-    text-decoration: none;
-    color:black;
-
-}
-#menu li a:hover{
-    border-left: 5px solid #8B0000;
-    background-color: #CDC9C9;
+    font-size: 8pt;
 }
 
-/*div do conteúdo do site*/
-#conteudo{
-    height: 800px;
-    background-color: #DCDCDC;
+#login button{
+    display: block;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: right;
+    font-size: 10pt;
 }
-#conteudo table{
-    margin-top: 15px;
-    margin-left: 280px;
-    border-collapse: collapse;
-    background-color: #fff;
-    width: 65%;
-    text-align: center;
+
+/*Conteudo*/
+#content{
+
+    height: 520px;
+    background: #000000;
+    background-image: url("../img/fundoHome.jpg");
+    background-repeat: no-repeat;
+    text-align: left;
+    padding: 25px;
+
 }
-#conteudo table td{
-    border: 1px solid #C1CDCD;
+#conteudo {
+    overflow:hidden;
+    width:600px;
+    margin:0 auto;
+    padding:10px 10px 10px;
+    border:0px ;
+    text-align:left;
 }
-#conteudo table th{
-    border: 1px solid #C1CDCD;
-}
-h5.title{
-    margin-top: 15px;
-    margin-left: 280px;
-    margin-bottom: 15px;
-    font-family: Arial;
-    font-size: 24px;
-}
-/*div do rodapé*/
+/*div do rodap�*/
 #rodape{
-    height: 75px;
-    background-color: #BEBEBE;
+
+    width:983px;
+    background-color: #87CEFA;
+    margin-left: 213px
 }
 #rodape  span{
     font-weight: bold;
@@ -107,86 +87,57 @@ h5.title{
     text-align: center;
 }
 
-/*Botão*/
-button{
-    
-}
-.btnAdicionar{
-    font:bold 12px Tahoma, Geneva, sans-serif;
-    font-style:normal;
-    float: right;
-    color:#ffffff;
-    background:#2773d6;
-    border:0px solid #ffffff;
-    text-shadow:0px 0px 1px #222222;
-    box-shadow:2px 2px 5px #000000;
-    -moz-box-shadow:2px 2px 5px #000000;
-    -webkit-box-shadow:2px 2px 5px #000000;
-    border-radius:10px 10px 0px 10px;
-    -moz-border-radius:10px 10px 0px 10px;
-    -webkit-border-radius:10px 10px 0px 10px;
-    width:100px;
-    padding:9px 16px;
-    cursor:pointer;
-    margin-top: 15px;
-    margin-right: 60px;
-}
-.btnAdicionar:active{
-    cursor:pointer;
-    position:relative;
-    top:2px;
-}
-.btnConfirmar{
-    font:bold 12px Tahoma, Geneva, sans-serif;
-    font-style:normal;
-    float: right;
-    color:#ffffff;
-    background:#00CD00;
-    border:0px solid #ffffff;
-    text-shadow:0px 0px 1px #222222;
-    box-shadow:2px 2px 5px #000000;
-    -moz-box-shadow:2px 2px 5px #000000;
-    -webkit-box-shadow:2px 2px 5px #000000;
-    border-radius:10px 10px 0px 10px;
-    -moz-border-radius:10px 10px 0px 10px;
-    -webkit-border-radius:10px 10px 0px 10px;
-    width:100px;
-    padding:9px 16px;
-    cursor:pointer;
-    margin-top: 15px;
-    margin-right: 60px;
-}
-.btnConfirmar:active{
-    cursor:pointer;
-    position:relative;
-    top:2px;
-}
-.btnCancelar{
-    font:bold 12px Tahoma, Geneva, sans-serif;
-    font-style:normal;
-    float: right;
-    color:#ffffff;
-    background:#EE0000;
-    border:0px solid #ffffff;
-    text-shadow:0px 0px 1px #222222;
-    box-shadow:2px 2px 5px #000000;
-    -moz-box-shadow:2px 2px 5px #000000;
-    -webkit-box-shadow:2px 2px 5px #000000;
-    border-radius:10px 10px 0px 10px;
-    -moz-border-radius:10px 10px 0px 10px;
-    -webkit-border-radius:10px 10px 0px 10px;
-    width:100px;
-    padding:9px 16px;
-    cursor:pointer;
-    margin-top: 15px;
-    margin-right: 60px;
-}
-.btnCancelar:active{
-    cursor:pointer;
-    position:relative;
-    top:2px;
+
+select {
+    width: 200px;
 }
 
-.modificar{
-    cursor: pointer;
+a {
+    font-size: 14px;
+}
+
+h1 {
+    text-align: center;
+    color: #000000;
+}
+
+h3{
+    padding-bottom: 10px;
+    color:  #FF5500;
+}
+
+p {
+    padding-bottom: 5px;
+    font-size:16px;
+    text-indent: 1cm;
+}
+
+p + h3 {
+    padding: 8px;
+}
+
+ol {
+    font-size: 8px;
+    line-height: 2;
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+h2 {
+    color: #FF5500;
+    padding-top: 9px;
+}
+table {
+    padding-bottom: 5px;
+    font-size:14px;
+    text-indent: 1cm;
+    width: 600px;
+}
+
+
+
+img{
+    float:center;
+    width: 400px;
+    height: 100px;
 }

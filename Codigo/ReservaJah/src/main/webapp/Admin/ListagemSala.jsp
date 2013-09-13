@@ -23,8 +23,8 @@
                     <td><c:out value="${sala.nome}"/></td>
                     <td><c:out value="${sala.blocoPertencente.nome}"/></td>
                     <td><c:out value="${sala.capacidade}"/></td>
-                    <td><a class="modificar" onclick="editarSala(<c:out value="${sala.id}"/>);"><img src="../img/editar.png"/></a></td>
-                    <td><a class="modificar" onclick="apagarSala(<c:out value="${sala.id}"/>);"><img src="../img/apagar.png"/></a></td>
+                    <td><a class="modificar" onclick="editarSala(<c:out value="${sala.id}"/>);"><img src="../img/alterar.png"/></a></td>
+                    <td><a class="modificar" onclick="apagarSala(<c:out value="${sala.id}"/>);"><img src="../img/delete.png"/></a></td>
                 </tr>
             </c:forEach>
         </c:when>

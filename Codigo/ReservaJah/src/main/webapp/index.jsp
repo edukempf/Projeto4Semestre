@@ -16,17 +16,43 @@
         <script language="javascript" src="../js/projeto.js"></script>
     </head>
     <body>
-        <div>
-            <form action="LoginServlet" method="post">
-            <label>Login</label>
-            <input type="text" name="login" />
-            <label>Senha</label>
-            <input type="text" name="senha" />
-            <input type="submit" value="login"/>
-            </form>
-            <br />
-            
-            <label><c:out value="${erro}"/></label>
+        <div id="page">
+            <div id="header" align="center">
+                <form id="login" name="login" action="LoginServlet" method="post">
+                    <label>
+                        Login:
+                        <input type="text" name="login" maxlength="45" value=""  />
+                    </label>
+                    <label>
+                        Senha:
+                        <input type="password" name="senha" maxlength="45" value=""  />
+                    </label>
+                    <input type="submit" value="login"/>
+                </form>
+                <br />
+
+                <label><c:out value="${erro}"/></label>
+
+            </div>
+            <div id="content" align="center">
+                <div id="conteudo" align="center"></div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <a href="ConsultarSala.jsp"><img src="img/botaoHorarios.jpg" alt=""></a>
+            </div>
+        </div>
+        <div id="rodape">
+            <p><span>ReservaJAH.com</span>&copy 2013. Todos os direitos reservados</p>
         </div>
     </body>
 </html>
