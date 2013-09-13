@@ -65,9 +65,18 @@
             </c:forEach> 
         </select>
     </div>
+
+    <div>
+        <label>Data de inicio</label>
+        <input type="text" name="diaInicio"id="dataInicio" value="<c:out value="${dataInicio}"/>"/>
+
+        <label>Data de fim</label>
+        <input type="text" name="diaFim" id="dataFim" value="<c:out value="${dataFim}"/>"/>
+    </div>
     <div>
         <label>Hora inicio da aula</label>
         <select id="horaInicio" name="hInicio" onchange="listaNovoHorario();">
+            <option value="0">Selicione um Horário</option>
             <c:forEach items="${horarios}" var="horario" varStatus="aa">
                 <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
             </c:forEach>
@@ -76,6 +85,7 @@
     <div>
         <label>Hora fim da aula</label>
         <select id="horaFim" name="horaFim" onchange="mudarCor();">
+            <option value="0">Selicione um Horário</option>
             <c:choose>
                 <c:when test="${horaFim.size()!=0}">
                     <c:forEach items="${horaFim}" var="horario" varStatus="aa">
@@ -87,14 +97,6 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
-    <div>
-        <label>Dia inicio aula</label>
-        <input type="text" name="diaInicio" value="<c:out value="${dataInicio}"/>"/>
-    </div>
-    <div>
-        <label>Dia fim aula</label>
-        <input type="text" name="diaFim" value="<c:out value="${dataFim}"/>"/>
     </div>
     <table>
         <c:forEach items="${horarios}" var="horario" varStatus="local">
@@ -131,25 +133,30 @@
     <button type="button" onclick="cadastrarAula();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-            $(document).ready(function() {
-                var att;
-                for (var i = 1; i < 7; i++) {
-                    for (var j = 1; j < 18; j++) {
-                        att = "#" + j + i;
-                        if ($(att).html().trim()) {
-                            var aux = j;
+    $(document).ready(function() {
+        var att;
+        for (var i = 1; i < 7; i++) {
+            for (var j = 1; j < 18; j++) {
+                att = "#" + j + i;
+                if ($(att).html().trim()) {
+                    var aux = j;
+                    $(att).css('background-color', 'red');
+                    while (!$(att).html().match("fim")) {
+                        aux++;
+                        att = "#" + aux + i;
+                        $(att).css('background-color', 'red');
+                        if ($(att).html().trim() !== "") {
                             $(att).css('background-color', 'red');
-                            while (!$(att).html().match("fim")) {
-                                aux++;
-                                att = "#" + aux + i;
-                                $(att).css('background-color', 'red');
-                                if ($(att).html().trim() !== "") {
-                                    $(att).css('background-color', 'red');
-                                    break;
-                                }
-                            }
+                            break;
                         }
                     }
                 }
-            });
+            }
+        }
+    });
+
+    $(function(){
+        $("#dataInicio").datepicker({dateFormat:'dd/mm/yy'});
+        $("#dataFim").datepicker({dateFormat:'dd/mm/yy'});
+    });
 </script>

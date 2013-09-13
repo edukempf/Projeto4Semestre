@@ -9,7 +9,7 @@ package Class;
  * @author eduardo
  */
 public enum DiasSemana{
-    SEG("Segunda"),TER("Terça"),QUA("Quarta"),QUI("Quinta"),SEX("Sexta"),SAB("Sábado");
+    SEG("Segunda-Feira"),TER("Terça-Feira"),QUA("Quarta-Feira"),QUI("Quinta-Feira"),SEX("Sexta-Feira"),SAB("Sábado");
     
     private String descricao;
 
