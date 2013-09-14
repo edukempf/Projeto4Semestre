@@ -52,6 +52,8 @@ public class AulaServlet extends HttpServlet {
             session.setAttribute("aulaEditar",null);
             session.setAttribute("dataInicio", null);
             session.setAttribute("dataFim", null);
+            session.setAttribute("diaInicio", null);
+            session.setAttribute("diaFim", null);
             daoD = new GenericDao<Disciplina>(Disciplina.class);
             ArrayList<Disciplina> listaD = (ArrayList<Disciplina>) daoD.list();
             ArrayList<Aula> listaA = (ArrayList<Aula>) daoA.list();
@@ -73,6 +75,8 @@ public class AulaServlet extends HttpServlet {
                 dd.setInicio(null);
             }
             session.setAttribute("horaFim", ss);
+            session.setAttribute("diaInicio", request.getParameter("diaInicio"));
+            session.setAttribute("diaFim", request.getParameter("diaFim"));
             session.setAttribute("idHor", Integer.parseInt(request.getParameter("id")));
             session.setAttribute("diaSelecionado", Integer.parseInt(request.getParameter("dia")));
         }

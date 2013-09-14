@@ -441,7 +441,7 @@ function listaSala() {
 
 function listaNovoHorario() {
     $.ajax({
-        url: '../AulaServlet?dia=' + $('#dia').val() + '&op=listaHoraFim&id=' + $('#horaInicio').val(),
+        url: '../AulaServlet?dia=' + $('#dia').val() + '&op=listaHoraFim&id=' + $('#horaInicio').val()+'&diaFim='+$('#dataFim').val()+'&diaInicio='+$('#dataInicio').val(),
         type: 'GET',
         success: function(ret) {
             voltarListarDisciplina('CadastroAula.jsp');

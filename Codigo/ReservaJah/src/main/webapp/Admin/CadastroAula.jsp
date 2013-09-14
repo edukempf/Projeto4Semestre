@@ -68,10 +68,10 @@
 
     <div>
         <label>Data de inicio</label>
-        <input type="text" name="diaInicio"id="dataInicio" value="<c:out value="${dataInicio}"/>"/>
+        <input type="text" name="diaInicio"id="dataInicio" value="<c:out value="${dataInicio==null?diaInicio : dataInicio}"/>"/>
 
         <label>Data de fim</label>
-        <input type="text" name="diaFim" id="dataFim" value="<c:out value="${dataFim}"/>"/>
+        <input type="text" name="diaFim" id="dataFim" value="<c:out value="${dataFim==null?diaFim:dataFim}"/>"/>
     </div>
     <div>
         <label>Hora inicio da aula</label>
@@ -89,7 +89,7 @@
             <c:choose>
                 <c:when test="${horaFim.size()!=0}">
                     <c:forEach items="${horaFim}" var="horario" varStatus="aa">
-                        <option value="${aa.count}" ${aulaEditar.fim == horario? "selected" :""} >${horario}</option>
+                        <option value="${aa.count}" ${aulaEditar.fim == horario? "selected" :""} ><c:out value="${horario}"/></option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
