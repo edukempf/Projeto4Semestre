@@ -4,12 +4,6 @@
     Author     : Eduardo
 --%>
 
-<%-- 
-    Document   : CadastroAula
-    Created on : 05/09/2013, 11:08:03
-    Author     : eduardo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -17,29 +11,33 @@
     <input type="hidden" name="idAula" value="${aulaEditar.id}"/>
     <h5 class="title">Gerenciar Aulas</h5>
     <div>
+        <div>
+            <label>Data da reserva</label>
+            <input type="text" name="dataInicio" id="dataInicio" value="<c:out value="${dataInicio == null ? diaInicio : dataInicio}"/>" onchange="pegaDia();"/>
+        </div>
         <label>Bloco</label>
-        <select id="bloco" name="bloco" onchange="listaSala();">
+        <select id="bloco" name="bloco" onchange="listaSala2();">
             <c:choose>
                 <c:when test="${listaBloco.size()!=0}">
                     <option value="0">Selecione um bloco</option>
                     <c:forEach items="${listaBloco}" var="bloco">
-                        <option value="${bloco.id}" ${idBloco == bloco.id? "selected" :""} ${aulaEditar.sala.blocoPertencente.id == bloco.id? "selected" :""}>${bloco.nome}</option>
+                        <option value="${bloco.id}" ${idBloco == bloco.id? "selected" :""} >${bloco.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
-                    <option>Cadastre um bloco antes</option>
+                    <option>Selecione o dia antes</option>
                 </c:otherwise>
             </c:choose>
         </select>
     </div>
     <div>
         <label>Sala</label>
-        <select id="sala" name="sala" onchange="listaAulasSala();">
+        <select id="sala" name="sala" onchange="listaAulasSala2();">
             <c:choose>
                 <c:when test="${listaSalaBloco.size()!=0}">
                     <option value="0">Selecione uma sala</option>
                     <c:forEach items="${listaSalaBloco}" var="sala">
-                        <option value="${sala.id}" ${idSala == sala.id? "selected" :""} ${aulaEditar.sala.id == sala.id? "selected" :""} >${sala.nome}</option>
+                        <option value="${sala.id}" ${idSala == sala.id? "selected" :""} >${sala.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -52,9 +50,10 @@
         <label>Disciplina:</label>
         <select id="disciplina" name="disciplina" onchange="">
             <c:choose>
-                <c:when test="${disciplinas.size()!=0}">
-                    <c:forEach items="${disciplinas}" var="disciplina" varStatus="aa">
-                        <option value="${disciplina.id}" ${aulaEditar.disciplina.id == disciplina.id? "selected" :""}>${disciplina.nome}</option>
+                <c:when test="${listaDisciplina.size()!=0}">
+                    <option value="0">Selecione uma disciplina</option>
+                    <c:forEach items="${listaDisciplina}" var="disciplina" varStatus="aa">
+                        <option value="${disciplina.id}" ${idD == disciplina.id? "selected" :""}>${disciplina.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -64,16 +63,8 @@
         </select>
     </div>
     <div>
-        <label>Dia da semana da reserva</label>
-        <select id="dia" name="dia" onchange="setaColuna();">
-            <c:forEach items="${dias}" var="dia" varStatus="aa">
-                <option value="${aa.count}" ${aulaEditar.dia == dia? "selected" :""} ${diaSelecionado == aa.count? "selected" :""}><c:out value="${dia}"/></option>
-            </c:forEach> 
-        </select>
-    </div>
-    <div>
         <label>Hora inicio da reserva</label>
-        <select id="horaInicio" name="hInicio" onchange="listaNovoHorario();">
+        <select id="horaInicio" name="hInicio" onchange="listaNovoHorario2();">
             <c:forEach items="${horarios}" var="horario" varStatus="aa">
                 <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
             </c:forEach>
@@ -85,7 +76,7 @@
             <c:choose>
                 <c:when test="${horaFim.size()!=0}">
                     <c:forEach items="${horaFim}" var="horario" varStatus="aa">
-                        <option value="${aa.count}" ${aulaEditar.fim == horario? "selected" :""} >${horario}</option>
+                        <option value="${aa.count}" ${aulaEditar.fim == horario? "selected" :""} ><c:out value="${horario}"/></option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
@@ -94,7 +85,7 @@
             </c:choose>
         </select>
     </div>
-    <table>
+    <table id="tabela">
         <c:forEach items="${horarios}" var="horario" varStatus="local">
             <c:if test="${local.count<2}">
                 <tr>
@@ -129,25 +120,31 @@
     <button type="button" onclick="cadastrarReserva();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-            $(document).ready(function() {
-                var att;
-                for (var i = 1; i < 7; i++) {
+                $(document).ready(function() {
+                    var att;
+                    var i = 1;
                     for (var j = 1; j < 18; j++) {
                         att = "#" + j + i;
-                        if ($(att).html().trim()) {
-                            var aux = j;
-                            $(att).css('background-color', 'red');
-                            while (!$(att).html().match("fim")) {
-                                aux++;
-                                att = "#" + aux + i;
+                        if ($(att).html() != undefined) {
+                            if ($(att).html().match("inicio")) {
+                                var aux = j;
                                 $(att).css('background-color', 'red');
-                                if ($(att).html().trim() !== "") {
+                                while (!$(att).html().match("fim")) {
+                                    aux++;
+                                    att = "#" + aux + i;
                                     $(att).css('background-color', 'red');
-                                    break;
+                                    if ($(att).html().trim() !== "") {
+                                        $(att).css('background-color', 'red');
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            });
+                });
+
+                $(function() {
+                    $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
+                });
+
 </script>

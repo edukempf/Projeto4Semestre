@@ -40,6 +40,8 @@ public class Aula implements Serializable {
     private Disciplina disciplina;
     @OneToOne
     private Sala sala;
+    @ManyToOne
+    private Usuario usuario;
     private boolean status;
     
     public Long getId() {
@@ -112,6 +114,14 @@ public class Aula implements Serializable {
 
     public void setSala(Sala sala) {
         this.sala = sala;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
 }

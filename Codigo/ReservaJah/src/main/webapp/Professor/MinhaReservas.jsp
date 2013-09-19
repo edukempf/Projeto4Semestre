@@ -5,13 +5,35 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<h5 class="title">Gerenciar Aula</h5>
+<table id="lista">
+    <tr>
+        <th>Disciplina</th>
+        <th>Sala</th>
+        <th>Bloco</th>
+        <th>Inicio</th>
+        <th>Fim</th>
+    </tr>
+    <c:choose>
+        <c:when test="${listaAula.size()!=0}">
+            <c:forEach items="${listaAula}" var="aula">
+                <tr>
+                    <td><c:out value="${aula.disciplina.nome}"/></td>
+                    <td><c:out value="${aula.sala.nome}"/></td>
+                    <td><c:out value="${aula.sala.blocoPertencente.nome}"/></td>
+                    <td><c:out value="${aula.inicio}"/></td>
+                    <td><c:out value="${aula.fim}"/></td>
+                    <td><a class="modificar" onclick="apagarAula(<c:out value="${aula.id}"/>);"><img src="../img/delete.png"/></a></td>
+                </tr>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td>Nenhuma reserva feita</td>
+            </tr>
+        </c:otherwise>
+    </c:choose>
+</table>
+<button type="button" onclick="telaCadastroAula2();" value="" class="btnAdicionar">Fazer nova reserva</button>

@@ -76,6 +76,26 @@ $(document).ready(function() {
             }
         });
     });
+    $('#reservaSala').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'GET',
+            success: function(ret) {
+                $('#conteudo').load('ReservarSala.jsp');
+            }
+        });
+    });
+    $('#minhasReservas').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'GET',
+            success: function(ret) {
+                $('#conteudo').load('MinhaReservas.jsp');
+            }
+        });
+    });
 });
 function telaCadastroBloco() {
     $('#conteudo').load('CadastroBloco.jsp');
@@ -125,6 +145,15 @@ function telaCadastroAula() {
         type: 'GET',
         success: function(ret) {
             $('#conteudo').load('CadastroAula.jsp');
+        }
+    });
+}
+function telaCadastroAula2() {
+    $.ajax({
+        url: '../BlocoServlet?op=listar',
+        type: 'GET',
+        success: function(ret) {
+            $('#conteudo').load('ReservarSala.jsp');
         }
     });
 }
@@ -240,6 +269,16 @@ function cadastrarAula() {
         }
     });
 }
+function cadastrarReserva() {
+    $.ajax({
+        url: '../ReservaServlet',
+        data: $('#form').serialize(),
+        type: 'POST',
+        success: function(ret) {
+            voltarListarReserva('MinhaReserva.jsp');
+        }
+    });
+}
 function voltarListarBloco(caminho) {
     $.ajax({
         url: '../BlocoServlet?op=listar',
@@ -297,6 +336,15 @@ function voltarListarDisciplina(caminho) {
 function voltarListarAula(caminho) {
     $.ajax({
         url: '../AulaServlet?op=listar',
+        type: 'GET',
+        success: function(ret) {
+            $('#conteudo').load(caminho);
+        }
+    });
+}
+function voltarListarReserva(caminho) {
+    $.ajax({
+        url: '../ReservaServlet?op=listar',
         type: 'GET',
         success: function(ret) {
             $('#conteudo').load(caminho);
@@ -438,15 +486,35 @@ function listaSala() {
         }
     });
 }
+function listaSala2() {
+    $.ajax({
+        url: 'SalaServlet?op=listaSalasBloco&id=' + $('#bloco').val(),
+        type: 'GET',
+        success: function(ret) {
+            location.reload();
+        }
+    });
+}
 
 function listaNovoHorario() {
     $.ajax({
-        url: '../AulaServlet?dia=' + $('#dia').val() + '&op=listaHoraFim&id=' + $('#horaInicio').val()+'&diaFim='+$('#dataFim').val()+'&diaInicio='+$('#dataInicio').val(),
+        url: '../AulaServlet?dia=' + $('#dia').val() + '&op=listaHoraFim&id=' + $('#horaInicio').val() + '&diaFim=' + $('#dataFim').val() + '&diaInicio=' + $('#dataInicio').val(),
         type: 'GET',
         success: function(ret) {
             voltarListarDisciplina('CadastroAula.jsp');
             linhaI = $('#horaInicio').val();
-            
+
+        }
+    });
+}
+function listaNovoHorario2() {
+    $.ajax({
+        url: '../ReservaServlet?op=listaHoraFim&id=' + $('#horaInicio').val()+ '&idD=' + $('#disciplina').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarTelaCadastro();
+            linhaI = $('#horaInicio').val();
+
         }
     });
 }
@@ -454,14 +522,14 @@ function setaColuna() {
     coluna = $('#dia').val();
 }
 function mudarCor() {
-    var aux=linhaI;
+    var aux = linhaI;
     for (var i = 1; i <= linhaF; i++) {
         var att = "#" + aux + coluna;
         $(att).css('background-color', 'white');
         aux++;
     }
     linhaF = $('#horaFim').val();
-    var aux=linhaI;
+    var aux = linhaI;
     for (var i = 1; i <= linhaF; i++) {
         var att = "#" + aux + coluna;
         $(att).css('background-color', 'blue');
@@ -477,4 +545,71 @@ function listaAulasSala() {
             voltarListarDisciplina('CadastroAula.jsp');
         }
     });
+}
+function listaAulasSala2() {
+    $.ajax({
+        url: '../ReservaServlet?op=listaAulaSala&id=' + $('#sala').val() + '&data=' + $('#dataInicio').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarTelaCadastro();
+        }
+    });
+}
+function listaAulasSala3() {
+    $.ajax({
+        url: 'ConsultaServlet?op=consulta&id=' + $('#sala').val() + '&data=' + $('#dataInicio').val(),
+        type: 'GET',
+        success: function(ret) {
+            location.reload();
+        }
+    });
+}
+function pegaDia() {
+    $.ajax({
+        url: 'ReservaServlet?op=pegaDia&dia=' + $('#dataInicio').val(),
+        type: 'GET',
+        success: function(ret) {
+            voltarTelaCadastro();
+        }
+    });
+}
+function pegaDia2() {
+    $.ajax({
+        url: 'ConsultaServlet?op=pegaDia&dia=' + $('#dataInicio').val(),
+        type: 'GET',
+        success: function(ret) {
+            location.reload();
+        }
+    });
+}
+function voltarTelaCadastro() {
+    $.ajax({
+        url: '../Professor/area_professor.jsp',
+        type: 'GET',
+        success: function(ret) {
+            $('#conteudo').load('ReservarSala.jsp');
+        }
+    });
+}
+
+function pinta() {
+    var att;
+    var i = 1;
+    for (var j = 1; j < 18; j++) {
+        att = "#" + j + i;
+        if ($(att).html().match("inicio")) {
+            var aux = j;
+            alert('ham')
+            $(att).css('background-color', 'red');
+            while (!$(att).html().match("fim")) {
+                aux++;
+                att = "#" + aux + i;
+                $(att).css('background-color', 'red');
+                if ($(att).html().trim() !== "") {
+                    $(att).css('background-color', 'red');
+                    break;
+                }
+            }
+        }
+    }
 }

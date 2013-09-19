@@ -81,8 +81,6 @@
                 <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
             </c:forEach>
         </select>
-    </div>
-    <div>
         <label>Hora fim da aula</label>
         <select id="horaFim" name="horaFim" onchange="mudarCor();">
             <option value="0">Selicione um Horário</option>
@@ -133,30 +131,30 @@
     <button type="button" onclick="cadastrarAula();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-    $(document).ready(function() {
-        var att;
-        for (var i = 1; i < 7; i++) {
-            for (var j = 1; j < 18; j++) {
-                att = "#" + j + i;
-                if ($(att).html().trim()) {
-                    var aux = j;
-                    $(att).css('background-color', 'red');
-                    while (!$(att).html().match("fim")) {
-                        aux++;
-                        att = "#" + aux + i;
-                        $(att).css('background-color', 'red');
-                        if ($(att).html().trim() !== "") {
+            $(document).ready(function() {
+                var att;
+                for (var i = 1; i < 7; i++) {
+                    for (var j = 1; j < 18; j++) {
+                        att = "#" + j + i;
+                        if ($(att).html().trim()) {
+                            var aux = j;
                             $(att).css('background-color', 'red');
-                            break;
+                            while (!$(att).html().match("fim")) {
+                                aux++;
+                                att = "#" + aux + i;
+                                $(att).css('background-color', 'red');
+                                if ($(att).html().trim() !== "") {
+                                    $(att).css('background-color', 'red');
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
-            }
-        }
-    });
+            });
 
-    $(function(){
-        $("#dataInicio").datepicker({dateFormat:'dd/mm/yy'});
-        $("#dataFim").datepicker({dateFormat:'dd/mm/yy'});
-    });
+            $(function() {
+                $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
+                $("#dataFim").datepicker({dateFormat: 'dd/mm/yy'});
+            });
 </script>

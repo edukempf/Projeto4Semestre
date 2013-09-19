@@ -1,6 +1,7 @@
 package DAO;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -66,6 +67,18 @@ public class GenericDao<T>{
     public List<T> listAulasSalas(Long parametro){
         Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE sala.id = :id");
         q.setParameter("id", parametro);
+        return q.getResultList();
+    }
+    public List<T> listAulasSalasData(Long parametro, Calendar data){
+        Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE sala.id = :id AND dataFim >= :data");
+        q.setParameter("id", parametro);
+        q.setParameter("data", data);
+        return q.getResultList();
+    }
+    public List<T> listReservasProfessor(Long parametro, Calendar data){
+        Query q= em.createQuery("FROM "+classe.getSimpleName()+ " WHERE usuario.id = :id AND dataFim >= :data");
+        q.setParameter("id", parametro);
+        q.setParameter("data", data);
         return q.getResultList();
     }
 

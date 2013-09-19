@@ -10,6 +10,7 @@ import Class.DiasSemana;
 import Class.Disciplina;
 import Class.Horario;
 import Class.Sala;
+import Class.Usuario;
 import DAO.GenericDao;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -136,7 +137,7 @@ public class AulaServlet extends HttpServlet {
         for (int i = 1; i <= numAula; i++) {
             idHorario++;
         }
-        Horario horaFim = listaHorario[idHorario];
+        Horario horaFim = listaHorario[idHorario-1];
         aula.setFim(horaFim);
 
         DiasSemana[] dias = DiasSemana.values();
@@ -146,13 +147,13 @@ public class AulaServlet extends HttpServlet {
         Calendar diaInicio = Calendar.getInstance();
         String data = request.getParameter("diaInicio");
         String[] valoresData = data.split("/");
-        diaInicio.set(Integer.parseInt(valoresData[2]), Integer.parseInt(valoresData[1]), Integer.parseInt(valoresData[0]));
+        diaInicio.set(Integer.parseInt(valoresData[2]), Integer.parseInt(valoresData[1])-1, Integer.parseInt(valoresData[0]));
         aula.setDataInicio(diaInicio);
 
         Calendar diaFim = Calendar.getInstance();
         String data2 = request.getParameter("diaFim");
         String[] valoresData2 = data2.split("/");
-        diaFim.set(Integer.parseInt(valoresData2[2]), Integer.parseInt(valoresData2[1]), Integer.parseInt(valoresData2[0]));
+        diaFim.set(Integer.parseInt(valoresData2[2]), Integer.parseInt(valoresData2[1])-1, Integer.parseInt(valoresData2[0]));
         aula.setDataFim(diaFim);
 
         daoD = new GenericDao<Disciplina>(Disciplina.class);
@@ -162,6 +163,10 @@ public class AulaServlet extends HttpServlet {
         daoS = new GenericDao<Sala>(Sala.class);
         Sala sala = daoS.get(Long.parseLong(request.getParameter("sala")));
         aula.setSala(sala);
+        
+        HttpSession session=request.getSession(false);
+        
+        aula.setUsuario((Usuario) session.getAttribute("user"));
 
         aula.setStatus(true);
 
