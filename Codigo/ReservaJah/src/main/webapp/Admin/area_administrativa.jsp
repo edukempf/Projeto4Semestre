@@ -43,5 +43,6 @@
                 <p><span>ReserveJAH.com</span>&copy 2013. Todos os direitos reservados</p>
             </div>
         </div>
+        <div class="modal"></div>
     </body>
 </html>

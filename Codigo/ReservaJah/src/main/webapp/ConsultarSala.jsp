@@ -16,17 +16,21 @@
         <script language="javascript" src="js/jquery-1.10.2.min.js"></script>
         <script language="javascript" src="js/jquery-ui.js"></script>
         <script language="javascript" src="js/projeto.js"></script>
-    </head>
-    <script>
-        $(function() {
-            $.ajax({
-                url: 'ConsultaServlet?op=bloco',
-                type: 'GET',
-                success: function(ret) {
-                }
+        <script>
+            $(function() {
+                $.ajax({
+                    url: 'ConsultaServlet?op=bloco',
+                    type: 'GET',
+                    beforeSend: function(ret) {
+                        $('.modal').show();
+                    },
+                    success: function(ret) {
+                        $('.modal').hide();
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    </head>
     <body>
         <div id="menu-lateral">
             <ul id="menu">
@@ -39,7 +43,6 @@
 
             <div id="content">
                 <div id="conteudo">
-                    <!DOCTYPE html>
                     <h5 class="title">Pesquisar</h5>
                     <div>
                         <div>
@@ -47,7 +50,7 @@
                             <input type="text" name="dataInicio" id="dataInicio" value="<c:out value="${dataInicio == null ? diaInicio : dataInicio}"/>" onchange="pegaDia2();"/>
                         </div>
                         <label>Bloco</label>
-                        <select id="bloco" name="bloco" onchange="listaSala2();">
+                        <select id="bloco" name="bloco" onchange="listaSala3();">
                             <c:choose>
                                 <c:when test="${listaBloco.size()!=0}">
                                     <option value="0">Selecione um bloco</option>
@@ -109,32 +112,32 @@
                         </c:forEach>
                     </table>
                     <script>
-        $(document).ready(function() {
-            var att;
-            var i = 1;
-            for (var j = 1; j < 18; j++) {
-                att = "#" + j + i;
-                if ($(att).html() != undefined) {
-                    if ($(att).html().match("inicio")) {
-                        var aux = j;
-                        $(att).css('background-color', 'red');
-                        while (!$(att).html().match("fim")) {
-                            aux++;
-                            att = "#" + aux + i;
+            $(document).ready(function() {
+                var att;
+                var i = 1;
+                for (var j = 1; j < 18; j++) {
+                    att = "#" + j + i;
+                    if ($(att).html() != undefined) {
+                        if ($(att).html().match("inicio")) {
+                            var aux = j;
                             $(att).css('background-color', 'red');
-                            if ($(att).html().trim() !== "") {
+                            while (!$(att).html().match("fim")) {
+                                aux++;
+                                att = "#" + aux + i;
                                 $(att).css('background-color', 'red');
-                                break;
+                                if ($(att).html().trim() !== "") {
+                                    $(att).css('background-color', 'red');
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
 
-        $(function() {
-            $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
-        });
+            $(function() {
+                $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
+            });
 
                     </script>
                 </div>
@@ -143,5 +146,6 @@
         <div id="rodape">
             <p><span>ReservaJAH.com</span>&copy 2013. Todos os direitos reservados</p>
         </div>
+                        <div class="modal"></div>s
     </body>
 </html>

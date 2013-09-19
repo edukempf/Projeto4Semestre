@@ -85,10 +85,12 @@ public class ReservaServlet extends HttpServlet {
             Calendar diaInicio = Calendar.getInstance();
             String data = request.getParameter("data");
             String[] valoresData = data.split("/");
+            daoD=new GenericDao<Disciplina>(Disciplina.class);
+            ArrayList<Disciplina> disciplina = (ArrayList<Disciplina>) daoD.list();
             diaInicio.set(Integer.parseInt(valoresData[2]), Integer.parseInt(valoresData[1]) - 1, Integer.parseInt(valoresData[0]));
             ArrayList<Aula> lista = (ArrayList<Aula>) daoA.listAulasSalasData(Long.parseLong(request.getParameter("id")), diaInicio);
             session.setAttribute("listaAulaSala", lista);
-            System.out.println(lista.size());
+            session.setAttribute("listaDisciplina", disciplina);
         }
         if (param.equals("listar")) {
             session.setAttribute("idBloco", null);
@@ -99,7 +101,7 @@ public class ReservaServlet extends HttpServlet {
             session.setAttribute("listaAulaSala", null);
             session.setAttribute("dias", null);
             session.setAttribute("dataInicio", null);
-            session.setAttribute("dataFim", null);
+            session.setAttribute("listaDisciplina", null);
             session.setAttribute("diaInicio", null);
             session.setAttribute("horarios", null);
             Usuario user = (Usuario) session.getAttribute("user");
@@ -162,7 +164,7 @@ public class ReservaServlet extends HttpServlet {
         session.setAttribute("listaAulaSala", null);
         session.setAttribute("dias", null);
         session.setAttribute("dataInicio", null);
-        session.setAttribute("dataFim", null);
+        session.setAttribute("listaDisciplina", null);
         session.setAttribute("diaInicio", null);
         session.setAttribute("horarios", null);
 

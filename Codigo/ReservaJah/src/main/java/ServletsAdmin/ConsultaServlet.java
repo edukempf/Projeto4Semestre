@@ -8,6 +8,7 @@ import Class.Aula;
 import Class.Bloco;
 import Class.DiasSemana;
 import Class.Horario;
+import Class.Sala;
 import DAO.GenericDao;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,7 @@ public class ConsultaServlet extends HttpServlet {
         GenericDao<Aula> daoA = new GenericDao<Aula>(Aula.class);
         HttpSession session = request.getSession();
         String param = request.getParameter("op");
-
+        GenericDao<Sala> daoS = new GenericDao<Sala>(Sala.class);
         GenericDao<Bloco> daoB = new GenericDao<Bloco>(Bloco.class);
 
         if (param.equalsIgnoreCase("consulta")) {
@@ -65,6 +66,11 @@ public class ConsultaServlet extends HttpServlet {
             session.setAttribute("dataInicio", dataInicio);
             session.setAttribute("dias", lista);
             session.setAttribute("horarios", horarios);
+        }
+        if (param.equals("listaSalasBloco")) {
+            ArrayList<Sala> listaSalaBloco = (ArrayList<Sala>) daoS.listSalasBloco(Long.parseLong(request.getParameter("id")));
+            session.setAttribute("idBloco", Long.parseLong(request.getParameter("id")));
+            session.setAttribute("listaSalaBloco", listaSalaBloco);
         }
     }
 
