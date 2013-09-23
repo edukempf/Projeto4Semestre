@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <h5 class="title">Gerenciar Aula</h5>
-<table id="lista">
+<table id="lista" class="tableLista">
     <tr>
         <th>Disciplina</th>
         <th>Sala</th>

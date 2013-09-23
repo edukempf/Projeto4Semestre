@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Consulta de Sala</title>
         <link rel="stylesheet" type="text/css" href="css/estilo01.css">
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script language="javascript" src="js/jquery-1.10.2.min.js"></script>
@@ -43,13 +43,15 @@
 
             <div id="content">
                 <div id="conteudo">
-                    <h5 class="title">Pesquisar</h5>
-                    <div>
-                        <div>
-                            <label>Data da consulta</label>
-                            <input type="text" name="dataInicio" id="dataInicio" value="<c:out value="${dataInicio == null ? diaInicio : dataInicio}"/>" onchange="pegaDia2();"/>
-                        </div>
-                        <label>Bloco</label>
+                    <h5 class="title">Pesquisar</h5><br/>
+                    <form id="form">
+                    <div class="field">
+                        <label for="data">Data da consulta</label>
+                        <input type="text" name="dataInicio" id="dataInicio" value="<c:out value="${dataInicio == null ? diaInicio : dataInicio}"/>" onchange="pegaDia2();"/>
+                    </div>
+                    <br/>
+                    <div class="field">
+                        <label for="bloco">Bloco:</label>
                         <select id="bloco" name="bloco" onchange="listaSala3();">
                             <c:choose>
                                 <c:when test="${listaBloco.size()!=0}">
@@ -63,9 +65,11 @@
                                 </c:otherwise>
                             </c:choose>
                         </select>
+                        <p class="hint">Escolha o Bloco de sua Prefer&ecirc;ia</p>
                     </div>
-                    <div>
-                        <label>Sala</label>
+                    <br/>
+                    <div class="field">
+                        <label for="sala">Sala:</label>
                         <select id="sala" name="sala" onchange="listaAulasSala3();">
                             <c:choose>
                                 <c:when test="${listaSalaBloco.size()!=0}">
@@ -79,7 +83,10 @@
                                 </c:otherwise>
                             </c:choose>
                         </select>
+                        <p class="hint">Escolha a Sala</p>
                     </div>
+                    </form>
+
                     <table id="tabela">
                         <c:forEach items="${horarios}" var="horario" varStatus="local">
                             <c:if test="${local.count<2}">
@@ -112,32 +119,32 @@
                         </c:forEach>
                     </table>
                     <script>
-            $(document).ready(function() {
-                var att;
-                var i = 1;
-                for (var j = 1; j < 18; j++) {
-                    att = "#" + j + i;
-                    if ($(att).html() != undefined) {
-                        if ($(att).html().match("inicio")) {
-                            var aux = j;
-                            $(att).css('background-color', 'red');
-                            while (!$(att).html().match("fim")) {
-                                aux++;
-                                att = "#" + aux + i;
-                                $(att).css('background-color', 'red');
-                                if ($(att).html().trim() !== "") {
-                                    $(att).css('background-color', 'red');
-                                    break;
+                        $(document).ready(function() {
+                            var att;
+                            var i = 1;
+                            for (var j = 1; j < 18; j++) {
+                                att = "#" + j + i;
+                                if ($(att).html() != undefined) {
+                                    if ($(att).html().match("inicio")) {
+                                        var aux = j;
+                                        $(att).css('background-color', 'red');
+                                        while (!$(att).html().match("fim")) {
+                                            aux++;
+                                            att = "#" + aux + i;
+                                            $(att).css('background-color', 'red');
+                                            if ($(att).html().trim() !== "") {
+                                                $(att).css('background-color', 'red');
+                                                break;
+                                            }
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    }
-                }
-            });
+                        });
 
-            $(function() {
-                $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
-            });
+                        $(function() {
+                            $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
+                        });
 
                     </script>
                 </div>
@@ -146,6 +153,6 @@
         <div id="rodape">
             <p><span>ReservaJAH.com</span>&copy 2013. Todos os direitos reservados</p>
         </div>
-                        <div class="modal"></div>s
+        <div class="modal"></div>s
     </body>
 </html>

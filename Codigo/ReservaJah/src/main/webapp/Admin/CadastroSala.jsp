@@ -7,16 +7,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <form id='form' action="../SalaServlet" method="post">
     <input type="hidden" name="id" value="${salaEditar.id}"/>
-    <div>
-        <label>Nome:</label>
+    <div class="field">
+        <label for="nome">Nome:</label>
         <input type="text" name="nome" value="${salaEditar.nome}"/><br />
-    </div>
-    <div>
-        <label>Capacidade:</label>
+        <p class="hint">Digite o nome</p>
+    </div><br/>
+    <div class="field">
+        <label for="capacidade">Capacidade:</label>
         <input type="text" name="capacidade" value="${salaEditar.capacidade}"/><br />
-    </div>
-    <div>
-        <label>Tipo de Sala</label>
+        <p class="hint">Digite a capacidade
+    </div><br/>
+    <div class="field">
+        <label for="tSala">Tipo de Sala:</label>
         <select name="tipo">
             <c:choose>
                 <c:when test="${listaTipoSala.size()!=0}">
@@ -29,9 +31,10 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
-    <div>
-        <label>Bloco</label>
+        <p class="hint">Selecione o tipo de sala</p>
+    </div><br/>
+    <div class="field">
+        <label for="bloco">Bloco:</label>
         <select name="bloco">
             <c:choose>
                 <c:when test="${listaBloco.size()!=0}">
@@ -44,7 +47,8 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
+        <p class="hint">Selecione um bloco</p>
+    </div><br/>
     <button type="button" onclick="voltarListarSala('ListagemSala.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="cadastrarSala();" value="" class="btnConfirmar">Confirmar</button>
 </form>

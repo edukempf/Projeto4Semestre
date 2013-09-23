@@ -10,20 +10,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <form id="form" action="../DisciplinaServlet" method="post">
     <input type="hidden" name="id" value="${disciplinaEditar.id}"/>
-    <div>
-        <label>Nome:</label>
+    <div class="field">
+        <label for="nome">Nome:</label>
         <input type="text" name="nome" value="${disciplinaEditar.nome}"/><br />
-    </div>
-    <div>
-        <label>Abreviatura</label>
+        <p class="hint">Digite um Nome</p>
+    </div><br/>
+    <div class="field">
+        <label for="abr">Abreviatura:</label>
         <input type="text" name="abreviatura" value="${disciplinaEditar.abreviatura}" /><br />
-    </div>
-    <div>
-        <label>Número de participantes</label>
+        <p class="hint">Digite a abreviatura da disciplina</p>
+    </div><br/>
+    <div class="field">
+        <label for="participantes">Número de participantes:</label>
         <input type="text" name="participantes" value="${disciplinaEditar.numParticipantes}"/><br />
-    </div>
-    <div>
-        <label>Professor Responsável</label>
+        <p class="hint">Digite o número de participantes</p>
+    </div><br/><br/>
+    <div class="field">
+        <label for="professor">Professor Responsável:</label>
         <select name="responsavel">
             <c:choose>
                 <c:when test="${listaProfessores.size()!=0}">
@@ -36,7 +39,8 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
+        <p class="hint">Selecione um professor</p>
+    </div><br/>
     <button type="button" onclick="voltarListarDisciplina('ListagemDisciplina.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="cadastrarDisciplina();" value="" class="btnConfirmar">Confirmar</button>
 </form>

@@ -7,11 +7,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+
 <form id="form">
     <input type="hidden" name="idAula" value="${aulaEditar.id}"/>
     <h5 class="title">Gerenciar Aulas</h5>
-    <div>
-        <label>Bloco</label>
+
+    <div class="field">
+        <label for="bloco">Bloco:</label>
         <select id="bloco" name="bloco" onchange="listaSala();">
             <c:choose>
                 <c:when test="${listaBloco.size()!=0}">
@@ -25,9 +27,10 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
-    <div>
-        <label>Sala</label>
+        <p class="hint">Selecione um bloco como parametro da consulta</p>
+    </div><br/>
+    <div class="field">
+        <label for="sala">Sala:</label>
         <select id="sala" name="sala" onchange="listaAulasSala();">
             <c:choose>
                 <c:when test="${listaSalaBloco.size()!=0}">
@@ -41,9 +44,10 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
-    <div>
-        <label>Disciplina:</label>
+        <p class="hint">Selecione uma sala como parametro da consulta</p>
+    </div><br/>
+    <div class="field">
+        <label for="disciplina">Disciplina:</label>
         <select id="disciplina" name="disciplina" onchange="">
             <c:choose>
                 <c:when test="${disciplinas.size()!=0}">
@@ -56,32 +60,36 @@
                 </c:otherwise>
             </c:choose>
         </select>
-    </div>
-    <div>
-        <label>Dia da semana da aula</label>
+        <p class="hint">Selecione uma disciplina como parametro da consulta</p>
+    </div><br/>
+    <div class="field">
+        <label for="dia">Dia da semana:</label>
         <select id="dia" name="dia" onchange="setaColuna();">
             <c:forEach items="${dias}" var="dia" varStatus="aa">
                 <option value="${aa.count}" ${aulaEditar.dia == dia? "selected" :""} ${diaSelecionado == aa.count? "selected" :""}><c:out value="${dia}"/></option>
             </c:forEach> 
         </select>
-    </div>
+        <p class="hint">Selecione o dia da semana da aula</p>
+    </div><br/>
 
-    <div>
-        <label>Data de inicio</label>
+    <div class="field">
+        <label for="diaInicio">Data de inicio:</label>
         <input type="text" name="diaInicio"id="dataInicio" value="<c:out value="${dataInicio==null?diaInicio : dataInicio}"/>"/>
-
-        <label>Data de fim</label>
+    
+   
+        <label for="diaFim">Data de fim:</label>
         <input type="text" name="diaFim" id="dataFim" value="<c:out value="${dataFim==null?diaFim:dataFim}"/>"/>
-    </div>
-    <div>
-        <label>Hora inicio da aula</label>
+    </div><br/>
+    <div class="field">
+        <label for="horaInicio">Hora inicio da aula:</label>
         <select id="horaInicio" name="hInicio" onchange="listaNovoHorario();">
-            <option value="0">Selicione um Horário</option>
+            <option value="0">Selicione um Horário:</option>
             <c:forEach items="${horarios}" var="horario" varStatus="aa">
                 <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
             </c:forEach>
         </select>
-        <label>Hora fim da aula</label>
+        <p class="hint">Selecione um horario como parametro da consulta</p>
+        <label for="horaFim">Hora fim da aula:</label>
         <select id="horaFim" name="horaFim" onchange="mudarCor();">
             <option value="0">Selicione um Horário</option>
             <c:choose>
@@ -95,6 +103,7 @@
                 </c:otherwise>
             </c:choose>
         </select>
+        <p class="hint">Selecione um horario como parametro da consulta</p>
     </div>
     <table>
         <c:forEach items="${horarios}" var="horario" varStatus="local">
@@ -131,30 +140,30 @@
     <button type="button" onclick="cadastrarAula();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-            $(document).ready(function() {
-                var att;
-                for (var i = 1; i < 7; i++) {
-                    for (var j = 1; j < 18; j++) {
-                        att = "#" + j + i;
-                        if ($(att).html().trim()) {
-                            var aux = j;
+    $(document).ready(function() {
+        var att;
+        for (var i = 1; i < 7; i++) {
+            for (var j = 1; j < 18; j++) {
+                att = "#" + j + i;
+                if ($(att).html().trim()) {
+                    var aux = j;
+                    $(att).css('background-color', 'red');
+                    while (!$(att).html().match("fim")) {
+                        aux++;
+                        att = "#" + aux + i;
+                        $(att).css('background-color', 'red');
+                        if ($(att).html().trim() !== "") {
                             $(att).css('background-color', 'red');
-                            while (!$(att).html().match("fim")) {
-                                aux++;
-                                att = "#" + aux + i;
-                                $(att).css('background-color', 'red');
-                                if ($(att).html().trim() !== "") {
-                                    $(att).css('background-color', 'red');
-                                    break;
-                                }
-                            }
+                            break;
                         }
                     }
                 }
-            });
+            }
+        }
+    });
 
-            $(function() {
-                $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
-                $("#dataFim").datepicker({dateFormat: 'dd/mm/yy'});
-            });
+    $(function() {
+        $("#dataInicio").datepicker({dateFormat: 'dd/mm/yy'});
+        $("#dataFim").datepicker({dateFormat: 'dd/mm/yy'});
+    });
 </script>

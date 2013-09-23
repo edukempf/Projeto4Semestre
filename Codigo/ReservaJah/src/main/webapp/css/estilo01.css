@@ -69,7 +69,7 @@ body {
 /*Conteudo*/
 #content{
 
-   
+
     background: #FFFFFF;
     background-repeat: no-repeat;
     text-align: left;
@@ -86,8 +86,8 @@ body {
 }
 #conteudo table{
     margin-top: 15px;
-    /*margin-right: 200px;*/
-    margin-left: 150px;
+    margin-right: 50px;
+    margin-left: 50px;
     border-collapse: collapse;
     background-color: #fff;
     width: 50%;
@@ -131,7 +131,7 @@ a {
 
 /*Botão*/
 button{
-    
+
 }
 .btnAdicionar{
     font:bold 12px Tahoma, Geneva, sans-serif;
@@ -221,13 +221,78 @@ button{
     height:     100%;
     width:      100%;
     background: rgba( 255, 255, 255, .8 ) 
-                url('../img/carregando.gif') 
-                50% 50% 
-                no-repeat;
+        url('../img/carregando.gif') 
+        50% 50% 
+        no-repeat;
 }
 body.loading {
     overflow: hidden;   
 }
 body.loading .modal {
     display: block;
+}
+
+#form {
+    padding: 20px;
+    background: #87CEFA;
+    /*overflow:auto;*/
+
+    /* Border style */
+    border: 1px solid #cccccc;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px; 
+
+    /* Border Shadow */
+    -moz-box-shadow: 2px 2px 2px #cccccc;
+    -webkit-box-shadow: 2px 2px 2px #cccccc;
+    box-shadow: 2px 2px 2px #cccccc;
+
+}
+label {
+    font-family: Arial, Verdana;
+    text-shadow: 2px 2px 2px #ccc;
+    display: block;
+    float: left; 
+    margin-right:15px;
+    font-weight: bold;
+    margin-right:10px;
+    text-align: center;
+    width: 200px;
+    /*line-height: 25px;*/
+    font-size: 15px;
+}
+.input{
+    font-family: Arial, Verdana;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #b9bdc1;
+    width: 300px;
+    color: #797979;
+}
+
+.hint{
+    display:none;
+}
+.field:hover .hint {
+    position: absolute;
+    display: block;
+    margin: -20px 0 0 380px;
+    color: #FFFFFF;
+    padding: 7px 10px;
+    background: rgba(0, 0, 0, 0.6);
+
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+select, input{ 
+    width: 220px;
+    height: 20px;
+}
+
+
+.tableLista{
+    width: 200px;
+    
 }
