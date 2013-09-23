@@ -9,12 +9,16 @@
 
 
 <h5 class="title">Gerenciar Usuários</h5>
-<table id="lista">
-    <tr>
-        <th>Nome</th>
-        <th>Tipo</th>
-        <th>email</th>
-    </tr>
+<table id="listaElementos">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>email</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+    </thead>
     <c:choose>
         <c:when test="${listaUsuario.size()!=0}">
             <c:forEach items="${listaUsuario}" var="user">
@@ -33,5 +37,23 @@
             </tr>
         </c:otherwise>
     </c:choose>
+    <tfoot>
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>email</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+    </tfoot>
 </table>
 <button type="button" onclick="telaCadastroUsuario();" value="" class="btnAdicionar">Adicionar</button>
+<script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#listaElementos').dataTable({
+                                "bScrollCollapse": true,
+                                "bPaginate": true,
+                                "bJQueryUI": true
+                            });
+                        });
+</script>

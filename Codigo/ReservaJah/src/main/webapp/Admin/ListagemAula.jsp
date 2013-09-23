@@ -8,14 +8,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <h5 class="title">Gerenciar Aula</h5>
-<table id="lista" class="tableLista">
-    <tr>
-        <th>Disciplina</th>
-        <th>Sala</th>
-        <th>Bloco</th>
-        <th>Inicio</th>
-        <th>Fim</th>
-    </tr>
+<table id="listaElementos">
+    <thead>
+        <tr>
+            <th>Disciplina</th>
+            <th>Sala</th>
+            <th>Bloco</th>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </thead>
     <c:choose>
         <c:when test="${listaAula.size()!=0}">
             <c:forEach items="${listaAula}" var="aula">
@@ -36,5 +40,25 @@
             </tr>
         </c:otherwise>
     </c:choose>
+    <tfoot>
+        <tr>
+            <th>Disciplina</th>
+            <th>Sala</th>
+            <th>Bloco</th>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </tfoot>
 </table>
 <button type="button" onclick="telaCadastroAula();" value="" class="btnAdicionar">Adicionar</button>
+<script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#listaElementos').dataTable({
+                                "bScrollCollapse": true,
+                                "bPaginate": true,
+                                "bJQueryUI": true
+                            });
+                        });
+</script>

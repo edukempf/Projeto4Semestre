@@ -10,12 +10,16 @@
 
 
 <h5 class="title">Gerenciar Disciplinas</h5>
-<table id="lista">
-    <tr>
-        <th>Nome</th>
-        <th>Responsável</th>
-        <th>Participantes</th>
-    </tr>
+<table id="listaElementos">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Responsável</th>
+            <th>Participantes</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </thead>
     <c:choose>
         <c:when test="${listaDisciplina.size()!=0}">
             <c:forEach items="${listaDisciplina}" var="disciplina">
@@ -34,5 +38,23 @@
             </tr>
         </c:otherwise>
     </c:choose>
+    <tfoot>
+        <tr>
+            <th>Nome</th>
+            <th>Responsável</th>
+            <th>Participantes</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </tfoot>
 </table>
 <button type="button" onclick="telaCadastroDisciplina();" value="" class="btnAdicionar">Adicionar</button>
+<script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#listaElementos').dataTable({
+                                "bScrollCollapse": true,
+                                "bPaginate": true,
+                                "bJQueryUI": true
+                            });
+                        });
+</script>

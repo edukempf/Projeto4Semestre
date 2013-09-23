@@ -7,10 +7,14 @@
 
 
 <h5 class="title">Gerenciar Blocos</h5>
-<table id="lista">
-    <tr>
-        <th>Nome</th>
-    </tr>
+<table id="listaElementos">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </thead>
     <c:choose>
         <c:when test="${listaBloco.size()!=0}">
             <c:forEach items="${listaBloco}" var="bloco">
@@ -27,6 +31,21 @@
             </tr>
         </c:otherwise>
     </c:choose>
+    <tfoot>
+        <tr>
+            <th>Nome</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </tfoot>
 </table>
 <button type="button" onclick="telaCadastroBloco();" value="" class="btnAdicionar">Adicionar</button>
-
+<script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#listaElementos').dataTable({
+                                "bScrollCollapse": true,
+                                "bPaginate": true,
+                                "bJQueryUI": true
+                            });
+                        });
+</script>

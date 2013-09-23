@@ -12,9 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="../css/estilo01.css">
+        <link href="../css/table_jui.css" rel="stylesheet" type="text/css" />
+        <link href="../css/colorbox.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
         <script language="javascript" src="../js/jquery-1.10.2.min.js"></script>
+        <script language="javascript" src="../js/jquery.min.js"></script>
         <script language="javascript" src="../js/jquery-ui.js"></script>
+        <script language="javascript" src="../js/jquery.dataTables.min.js"></script>
+        <script language="javascript" src="../js/jquery.colorbox-min.js"></script>
         <script language="javascript" src="../js/projeto.js"></script>
     </head>
     <body>

@@ -105,6 +105,7 @@
                                             <c:if test="${aula.inicio==horario}">
                                                 <c:if test="${aula.dia==dia}">
                                                     <input type="hidden" name="aula" value="inicio"/>
+                                                    <c:out value="${aula.disciplina.nome}" />
                                                 </c:if>
                                             </c:if>
                                             <c:if test="${aula.fim==horario}">

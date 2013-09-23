@@ -6,6 +6,11 @@ var coluna = 1;
 var linhaI = 0;
 var linhaF = 0;
 $(document).ready(function() {
+    oTable = $('#tabela').dataTable({
+        "bScrollCollapse": true,
+        "bPaginate": true,
+        "bJQueryUI": true
+    });
     $('#listaBlocos').click(function(event) {
         event.preventDefault();
         $.ajax({
@@ -227,6 +232,7 @@ function cadastrarBloco() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Bloco cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemBlocos.jsp');
                 }
             });
@@ -247,6 +253,7 @@ function cadastrarTipoSala() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Tipo de sala cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemTipoSala.jsp');
                 }
             });
@@ -267,6 +274,7 @@ function cadastrarTipoUsuario() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Tipo de usuário cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemTipoUsuario.jsp');
                 }
             });
@@ -287,6 +295,7 @@ function cadastrarSala() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Sala cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemSala.jsp');
                 }
             });
@@ -300,13 +309,14 @@ function cadastrarUsuario() {
         type: 'POST',
         success: function(ret) {
             $.ajax({
-                url: '../UsuariosServlet?op=listar',
+                url: '../Usuari2osServlet?op=listar',
                 type: 'GET',
                 beforeSend: function(ret) {
                     $('.modal').show();
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Usuário cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemUsuario.jsp');
                 }
             });
@@ -327,6 +337,7 @@ function cadastrarDisciplina() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Disciplina cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemDisciplina.jsp');
                 }
             });
@@ -347,6 +358,7 @@ function cadastrarAula() {
                 },
                 success: function(ret) {
                     $('.modal').hide();
+                    alert('Aula cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemAula.jsp');
                 }
             });
@@ -354,18 +366,21 @@ function cadastrarAula() {
     });
 }
 function cadastrarReserva() {
-    $.ajax({
-        url: '../ReservaServlet',
-        data: $('#form').serialize(),
-        type: 'POST',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarReserva('MinhaReserva.jsp');
-        }
-    });
+    var conf = confirm("Depois de realizar uma reserva é possivel somente cancelar a reserva. Você realmente deseja cadastrar essa reserva?");
+    if (conf === true)
+        $.ajax({
+            url: '../ReservaServlet',
+            data: $('#form').serialize(),
+            type: 'POST',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                $('.modal').hide();
+                alert('Reserva cadastrada com sucesso!!');
+                voltarListarReserva('MinhaReservas.jsp');
+            }
+        });
 }
 function voltarListarBloco(caminho) {
     $.ajax({
@@ -480,6 +495,7 @@ function editarBloco(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Bloco editado com sucesso!!');
             $('#conteudo').load('CadastroBloco.jsp');
         }
     });
@@ -493,6 +509,7 @@ function editarTipoSala(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Tipo de sala editado com sucesso!!');
             $('#conteudo').load('CadastroTipoSala.jsp');
         }
     });
@@ -506,6 +523,7 @@ function editarTipoUsuario(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Tipo de usuário editado com sucesso!!');
             $('#conteudo').load('CadastroTipoUsuario.jsp');
         }
     });
@@ -519,6 +537,7 @@ function editarSala(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Sala editada com sucesso!!');
             telaCadastroSala();
         }
     });
@@ -532,6 +551,7 @@ function editarUsuario(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Usuário editado com sucesso!!');
             telaCadastroUsuario();
         }
     });
@@ -545,6 +565,7 @@ function editarDisciplina(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Disciplina editada com sucesso!!');
             telaCadastroDisciplina();
         }
     });
@@ -558,100 +579,122 @@ function editarAula(id) {
         },
         success: function(ret) {
             $('.modal').hide();
+            alert('Aula editada com sucesso!!');
             telaCadastroAula();
         }
     });
 }
 function apagarBloco(id) {
-    $.ajax({
-        url: '../BlocoServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarBloco('ListagemBlocos.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../BlocoServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Bloco excluido com sucesso!!');
+                $('.modal').hide();
+                voltarListarBloco('ListagemBlocos.jsp');
+            }
+        });
 }
 function apagarTipoSala(id) {
-    $.ajax({
-        url: '../TipoSalaServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarTipoSala('ListagemTipoSala.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../TipoSalaServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Tipo de sala excluido com sucesso!!');
+                $('.modal').hide();
+                voltarListarTipoSala('ListagemTipoSala.jsp');
+            }
+        });
 }
 function apagarTipoUsuario(id) {
-    $.ajax({
-        url: '../TipoUsuarioServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarTipoUsuario('ListagemTipoUsuario.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../TipoUsuarioServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Tipo de usuário excluido com sucesso!!');
+                $('.modal').hide();
+                voltarListarTipoUsuario('ListagemTipoUsuario.jsp');
+            }
+        });
 }
 function apagarSala(id) {
-    $.ajax({
-        url: '../SalaServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarSala('ListagemSala.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../SalaServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Sala excluida com sucesso!!');
+                $('.modal').hide();
+                voltarListarSala('ListagemSala.jsp');
+            }
+        });
 }
 function apagarUsuario(id) {
-    $.ajax({
-        url: '../UsuariosServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarUsuario('ListagemUsuario.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../UsuariosServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Usuário excluido com sucesso!!');
+                $('.modal').hide();
+                voltarListarUsuario('ListagemUsuario.jsp');
+            }
+        });
 }
 function apagarDisciplina(id) {
-    $.ajax({
-        url: '../DisciplinaServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarDisciplina('ListagemDisciplina.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../DisciplinaServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Disciplina excluida com sucesso!!');
+                $('.modal').hide();
+                voltarListarDisciplina('ListagemDisciplina.jsp');
+            }
+        });
 }
 function apagarAula(id) {
-    $.ajax({
-        url: '../AulaServlet?op=apagar&id=' + id,
-        type: 'GET',
-        beforeSend: function(ret) {
-            $('.modal').show();
-        },
-        success: function(ret) {
-            $('.modal').hide();
-            voltarListarAula('ListagemAula.jsp');
-        }
-    });
+    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    if (conf === true)
+        $.ajax({
+            url: '../AulaServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Aula excluida com sucesso!!');
+                $('.modal').hide();
+                voltarListarAula('ListagemAula.jsp');
+            }
+        });
 }
 function listaSala() {
     $.ajax({

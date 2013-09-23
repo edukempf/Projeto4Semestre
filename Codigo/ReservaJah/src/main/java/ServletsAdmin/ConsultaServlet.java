@@ -36,20 +36,44 @@ public class ConsultaServlet extends HttpServlet {
         String param = request.getParameter("op");
         GenericDao<Sala> daoS = new GenericDao<Sala>(Sala.class);
         GenericDao<Bloco> daoB = new GenericDao<Bloco>(Bloco.class);
+        Horario[] horarios = Horario.values();
 
         if (param.equalsIgnoreCase("consulta")) {
             ArrayList<Aula> lista = new ArrayList<Aula>();
+            ArrayList<Aula> lista2 = new ArrayList<Aula>();
             Long id = Long.parseLong(request.getParameter("id"));
             Calendar diaInicio = Calendar.getInstance();
             String data = request.getParameter("data");
             String[] valoresData = data.split("/");
             diaInicio.set(Integer.parseInt(valoresData[2]), Integer.parseInt(valoresData[1]) - 1, Integer.parseInt(valoresData[0]));
             lista = (ArrayList<Aula>) daoA.listAulasSalasData(id, diaInicio);
-            session.setAttribute("listaAulaSala", lista);
+            for (Aula a : lista) {
+                int posI = 0, posF = 0;
+                for (int i = 0; i < horarios.length; i++) {
+                    if (a.getInicio() == horarios[i]) {
+                        posI = i;
+                    }
+                    if (a.getFim() == horarios[i]) {
+                        posF = i;
+                    }
+                }
+                for (int i = posI; i <= posF; i++) {
+                    Aula aux = new Aula();
+                    aux.setDisciplina(a.getDisciplina());
+                    aux.setDataFim(a.getDataFim());
+                    aux.setDataInicio(a.getDataInicio());
+                    aux.setFim(a.getFim());
+                    aux.setDia(a.getDia());
+                    aux.setSala(a.getSala());
+                    aux.setUsuario(a.getUsuario());
+                    aux.setInicio(horarios[i]);
+                    lista2.add(aux);
+                }
+            }
+            session.setAttribute("listaAulaSala", lista2);
             session.setAttribute("idSala", id);
         }
         if (param.equalsIgnoreCase("pegaDia")) {
-            Horario[] horarios = Horario.values();
             daoB = new GenericDao<Bloco>(Bloco.class);
             ArrayList<Bloco> bloco = (ArrayList<Bloco>) daoB.list();
             session.setAttribute("listaBloco", bloco);
@@ -72,6 +96,7 @@ public class ConsultaServlet extends HttpServlet {
             session.setAttribute("idBloco", Long.parseLong(request.getParameter("id")));
             session.setAttribute("listaSalaBloco", listaSalaBloco);
         }
+        response.sendRedirect("ConsultarSala.jsp");
     }
 
     @Override

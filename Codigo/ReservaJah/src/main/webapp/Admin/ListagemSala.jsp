@@ -10,12 +10,16 @@
 
 
 <h5 class="title">Gerenciar Salas</h5>
-<table id="lista">
-    <tr>
-        <th>Descrição</th>
-        <th>Bloco</th>
-        <th>Capacidade</th>
-    </tr>
+<table id="listaElementos">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Bloco</th>
+            <th>Capacidade</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </thead>
     <c:choose>
         <c:when test="${listaSala.size()!=0}">
             <c:forEach items="${listaSala}" var="sala">
@@ -34,5 +38,23 @@
             </tr>
         </c:otherwise>
     </c:choose>
+    <tfoot>
+        <tr>
+            <th>Descrição</th>
+            <th>Bloco</th>
+            <th>Capacidade</th>
+            <th>Editar</th>
+                        <th>Remover</th>
+        </tr>
+    </tfoot>
 </table>
 <button type="button" onclick="telaCadastroSala();" value="" class="btnAdicionar">Adicionar</button>
+<script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#listaElementos').dataTable({
+                                "bScrollCollapse": true,
+                                "bPaginate": true,
+                                "bJQueryUI": true
+                            });
+                        });
+</script>
