@@ -59,6 +59,7 @@ public class ConsultaServlet extends HttpServlet {
                 }
                 for (int i = posI; i <= posF; i++) {
                     Aula aux = new Aula();
+                    aux.setStatus(a.isStatus());
                     aux.setDisciplina(a.getDisciplina());
                     aux.setDataFim(a.getDataFim());
                     aux.setDataInicio(a.getDataInicio());

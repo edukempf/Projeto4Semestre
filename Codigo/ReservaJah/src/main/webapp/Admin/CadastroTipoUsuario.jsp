@@ -11,5 +11,28 @@
         <p class="hint">Digite a descriç&amacr;o para sala</p>
     </div>
     <button type="button" onclick="voltarListarTipoUsuario('ListagemTipoUsuario.jsp');" value="" class="btnCancelar">Cancelar</button>
-    <button type="button" onclick="cadastrarTipoUsuario();" value="" class="btnConfirmar">Confirmar</button>
+    <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
+<div id="div_mensagens" ></div>
+<script>
+        $(document).ready(function() {
+            $("#form").validate({
+                errorLabelContainer: $('#div_mensagens'),
+                rules: {
+                    descricao: {required: true, minlength: 3, maxlength: 50}
+                },
+                messages: {
+                    descricao: {required: "Digite uma descrição para o tipo de usuário. Ex: Professor", minlength: "A descrição deve ter no mínimo 3 dígitos", maxlength: "A descrição deve ter no máximo 50 dígitos"}
+                },
+                submitHandler: function() {
+                    cadastrarTipoUsuario();
+                }
+
+            });
+        });
+        function envia() {
+            if ($('#form').valid()) {
+                cadastrarTipoUsuario();
+            }
+        }
+</script>

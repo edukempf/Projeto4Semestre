@@ -8,6 +8,7 @@ import Class.Usuario;
 import DAO.GenericDao;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,15 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String param=request.getParameter("op");
+        if(param.equals("sair")){
+            Enumeration<String> atributos=session.getAttributeNames();
+            while(atributos.hasMoreElements()){
+                session.setAttribute(atributos.nextElement(), null);
+            }
+        }
+        response.sendRedirect("index.jsp");
     }
 
     @Override

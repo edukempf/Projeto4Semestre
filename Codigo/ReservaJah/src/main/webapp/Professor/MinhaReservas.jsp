@@ -28,7 +28,7 @@
                     <td><c:out value="${aula.sala.blocoPertencente.nome}"/></td>
                     <td><c:out value="${aula.inicio}"/></td>
                     <td><c:out value="${aula.fim}"/></td>
-                    <td><a class="modificar" onclick="apagarAula(<c:out value="${aula.id}"/>);"><img src="../img/delete.png"/></a></td>
+                    <td><a class="modificar" onclick="cancelarReserva(<c:out value="${aula.id}"/>);"><img src="../img/delete.png"/></a></td>
                 </tr>
             </c:forEach>
         </c:when>

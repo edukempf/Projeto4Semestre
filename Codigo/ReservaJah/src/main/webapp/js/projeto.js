@@ -6,11 +6,6 @@ var coluna = 1;
 var linhaI = 0;
 var linhaF = 0;
 $(document).ready(function() {
-    oTable = $('#tabela').dataTable({
-        "bScrollCollapse": true,
-        "bPaginate": true,
-        "bJQueryUI": true
-    });
     $('#listaBlocos').click(function(event) {
         event.preventDefault();
         $.ajax({
@@ -134,6 +129,20 @@ $(document).ready(function() {
             success: function(ret) {
                 $('.modal').hide();
                 $('#conteudo').load('MinhaReservas.jsp');
+            }
+        });
+    });
+    $('#consultar').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '../ReservaServlet?op=listar',
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                $('.modal').hide();
+                location.href='../ConsultarSala.jsp'
             }
         });
     });
@@ -696,6 +705,22 @@ function apagarAula(id) {
             }
         });
 }
+function cancelarReserva(id) {
+    var conf = confirm("Você relamente deseja cancelar essa reserva ?");
+    if (conf === true)
+        $.ajax({
+            url: '../ReservaServlet?op=apagar&id=' + id,
+            type: 'GET',
+            beforeSend: function(ret) {
+                $('.modal').show();
+            },
+            success: function(ret) {
+                alert('Reserva excluida com sucesso!!');
+                $('.modal').hide();
+                voltarListarReserva('MinhaReservas.jsp');
+            }
+        });
+}
 function listaSala() {
     $.ajax({
         url: '../SalaServlet?op=listaSalasBloco&id=' + $('#bloco').val(),
@@ -784,7 +809,7 @@ function mudarCor() {
 
 function listaAulasSala() {
     $.ajax({
-        url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val(),
+        url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val()+'&data='+$('#dataInicio').val(),
         type: 'GET',
         beforeSend: function(ret) {
             $('.modal').show();

@@ -83,8 +83,13 @@ public class AulaServlet extends HttpServlet {
         }
         if (param.equals("listaAulaSala")) {
             session.setAttribute("idSala", Integer.parseInt(request.getParameter("id")));
-            ArrayList<Aula> lista = (ArrayList<Aula>) daoA.listAulasSalas(Long.parseLong(request.getParameter("id")));
+           Calendar diaInicio = Calendar.getInstance();
+            String data = request.getParameter("data");
+            String[] valoresData = data.split("/");
+            diaInicio.set(Integer.parseInt(valoresData[2]), Integer.parseInt(valoresData[1]) - 1, Integer.parseInt(valoresData[0]));
+            ArrayList<Aula> lista = (ArrayList<Aula>) daoA.listAulasSalasData(Long.parseLong(request.getParameter("id")), diaInicio);
             session.setAttribute("listaAulaSala", lista);
+            session.setAttribute("diaInicio", request.getParameter("data"));
         }
         if (param.equals("editar")) {
             Aula edt = daoA.get(Long.parseLong(request.getParameter("id")));

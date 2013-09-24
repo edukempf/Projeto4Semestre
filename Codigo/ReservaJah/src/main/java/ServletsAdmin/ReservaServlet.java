@@ -108,6 +108,9 @@ public class ReservaServlet extends HttpServlet {
             ArrayList<Aula> listaA = (ArrayList<Aula>) daoA.listReservasProfessor(user.getId(), Calendar.getInstance());
             session.setAttribute("listaAula", listaA);
         }
+        if(param.equals("apagar")){
+            daoA.remove(Long.parseLong(request.getParameter("id")));
+        }
         response.sendRedirect("Professor/area_professor.jsp");
     }
 

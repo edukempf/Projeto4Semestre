@@ -18,6 +18,8 @@
         <script language="javascript" src="../js/jquery-1.10.2.min.js"></script>
         <script language="javascript" src="../js/jquery.min.js"></script>
         <script language="javascript" src="../js/jquery-ui.js"></script>
+        <script language="javascript" src="../js/jQueryValidate.js"></script>
+        <script language="javascript" src="../js/jquery.maskedinput.min.js"></script>
         <script language="javascript" src="../js/jquery.dataTables.min.js"></script>
         <script language="javascript" src="../js/jquery.colorbox-min.js"></script>
         <script language="javascript" src="../js/projeto.js"></script>
@@ -27,6 +29,8 @@
             <ul id="menu">
                 <li><a id="reservaSala" href="ReservarSala.jsp"> Reservar Sala</a></li>
                 <li><a id="minhasReservas" href="../ReservaServlet?op=listar"> Minhas Reservas</a></li>
+                <li><a id="consultar" href=""> Consultar Salas</a></li>
+                <li><a id="sair" href="../LoginServlet?op=sair"> Sair</a></li>
             </ul>
         </div>
         <div id="page">

@@ -4,7 +4,7 @@
     Author     : Eduardo
 --%>
 <script language="javascript" src="../js/projeto.js"></script>
-<form id="form" action="../BlocoServlet" method="post">
+<form id="form">
     <div class="field">
         <input type="hidden" name="id" value="${blocoEditar.id}"/>
         <label for="nome">Nome:</label>
@@ -12,5 +12,28 @@
         <p class="hint">Digite um Nome</p>
     </div>
     <button type="button" onclick="voltarListarBloco('ListagemBlocos.jsp');" value="" class="btnCancelar">Cancelar</button>
-    <button type="button" onclick="cadastrarBloco();" value="" class="btnConfirmar">Confirmar</button>
+    <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
+<div id="div_mensagens" ></div>
+<script>
+    $(document).ready(function (){
+        $("#form").validate({
+            errorLabelContainer: $('#div_mensagens'),
+            rules: {
+                nome: {required: true, minlength: 6, maxlength: 50}
+            },
+            messages: {
+                nome: {required: "Digite um nome para o bloco. Ex: Bloco X", minlength: "O nome deve ter no mínimo 6 dígitos", maxlength: "O nome deve ter no máximo 50 dígitos"}
+            },
+            submitHandler: function() {
+                cadastrarBloco();
+            }
+
+        });
+    });
+    function envia(){
+        if($('#form').valid()){
+            cadastrarBloco();
+        }
+    }
+</script>
