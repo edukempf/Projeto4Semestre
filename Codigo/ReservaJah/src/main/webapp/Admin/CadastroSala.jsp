@@ -5,6 +5,7 @@
 --%>
 <script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<div id="div_mensagens" ></div>
 <form id='form' action="../SalaServlet" method="post">
     <input type="hidden" name="id" value="${salaEditar.id}"/>
     <div class="field">
@@ -54,7 +55,6 @@
     <button type="button" onclick="voltarListarSala('ListagemSala.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
         $.validator.addMethod("valueNotEquals", function(value, element, arg) {
             return arg != value;

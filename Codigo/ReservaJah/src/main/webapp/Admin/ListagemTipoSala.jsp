@@ -28,6 +28,8 @@
         <c:otherwise>
             <tr>
                 <td>Nenhum tipo de sala cadastrado</td>
+                <td></td>
+                <td></td>
             </tr>
         </c:otherwise>
     </c:choose>
@@ -49,3 +51,15 @@
                             });
                         });
 </script>
+<c:if test="${sucessoExcluir}">
+    <script type="text/javascript">
+        alert("Tipo de sala excluido com sucesso.");
+    </script>
+    <c:remove var="sucessoExcluir"/>
+</c:if>
+<c:if test="${erroExcluir}">
+    <script type="text/javascript">
+        alert("Você não pode excluir este tipo de sala, certifique-se que ele não está sendo utilizado por alguma outra tarefa do sistema.");
+    </script>
+    <c:remove var="erroExcluir"/>
+</c:if>

@@ -41,7 +41,14 @@ public class TipoUsuarioServlet extends HttpServlet {
             TipoUsuario tuser = dao.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("tipoUsuarioEditar", tuser);
         }else if(param.equals("apagar")){
-            dao.remove(Long.parseLong(request.getParameter("id")));
+             try {
+                dao.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                
+                session.setAttribute("erroExcluir", true);
+                dao.getEntityManager().clear();
+            }
         }
         response.sendRedirect("Admin/area_administrativa.jsp");
     }

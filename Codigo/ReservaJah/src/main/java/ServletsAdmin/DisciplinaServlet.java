@@ -41,7 +41,13 @@ public class DisciplinaServlet extends HttpServlet {
             Disciplina user = daoD.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("disciplinaEditar", user);
         }else if(param.equals("apagar")){
-            daoD.remove(Long.parseLong(request.getParameter("id")));
+            try {
+                daoD.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                daoD.getEntityManager().clear();
+                session.setAttribute("erroExcluir", true);
+            }
         }
         response.sendRedirect("Admin/area_administrativa.jsp");
     }

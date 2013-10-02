@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<div id="div_mensagens" ></div>
 <form id="form">
     <input type="hidden" name="idAula" value="${aulaEditar.id}"/>
     <h5 class="title">Gerenciar Aulas</h5>
@@ -149,7 +150,6 @@
     <button type="button" onclick="voltarListarReserva('MinhaReservas.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
                 $(function() {
                     $.mask.definitions['~'] = "[+-]";

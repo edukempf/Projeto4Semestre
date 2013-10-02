@@ -4,6 +4,7 @@
     Author     : Eduardo
 --%>
 
+<div id="div_mensagens" ></div>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <script language="javascript" src="../js/projeto.js"></script>
@@ -45,7 +46,6 @@
     <button type="button" onclick="voltarListarDisciplina('ListagemDisciplina.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
         $.validator.addMethod("valueNotEquals", function(value, element, arg) {
             return arg != value;

@@ -39,7 +39,13 @@ public class TipoSalaServlet extends HttpServlet {
             TipoSala tsala = dao.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("tipoSalaEditar", tsala);
         }else if(param.equals("apagar")){
-            dao.remove(Long.parseLong(request.getParameter("id")));
+            try {
+                dao.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                session.setAttribute("erroExcluir", true);
+                dao.getEntityManager().clear();
+            }
         }
         response.sendRedirect("Admin/area_administrativa.jsp");
     }

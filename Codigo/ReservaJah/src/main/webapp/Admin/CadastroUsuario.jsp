@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<div id="div_mensagens" ></div>
 <form id="form" action="../UsuariosServlet" method="post">
     <input type="hidden" name="id" value="${usuarioEditar.id}"/>
     <div class="field">
@@ -50,7 +51,6 @@
     <button type="button" onclick="voltarListarUsuario('ListagemUsuario.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
         $.validator.addMethod("valueNotEquals", function(value, element, arg) {
             return arg != value;

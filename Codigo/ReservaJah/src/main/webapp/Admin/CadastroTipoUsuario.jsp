@@ -3,6 +3,7 @@
     Created on : 23/08/2013, 21:53:49
     Author     : Eduardo
 --%>
+<div id="div_mensagens" ></div>
 <form id='form' action="../TipoUsuarioServlet" method="post">
     <div class="field">
         <input type="hidden" name="id" value="${tipoUsuarioEditar.id}"/>
@@ -13,7 +14,6 @@
     <button type="button" onclick="voltarListarTipoUsuario('ListagemTipoUsuario.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
         $(document).ready(function() {
             $("#form").validate({

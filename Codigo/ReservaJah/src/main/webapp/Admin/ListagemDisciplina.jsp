@@ -35,6 +35,10 @@
         <c:otherwise>
             <tr>
                 <td>Nenhuma disciplina cadastrada</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </c:otherwise>
     </c:choose>
@@ -58,3 +62,15 @@
                             });
                         });
 </script>
+<c:if test="${sucessoExcluir}">
+    <script type="text/javascript">
+        alert("Disciplina excluida com sucesso.");
+    </script>
+    <c:remove var="sucessoExcluir"/>
+</c:if>
+<c:if test="${erroExcluir}">
+    <script type="text/javascript">
+        alert("Você não pode excluir está disciplina, certifique-se que ela não está sendo utilizada por alguma outra tarefa do sistema.");
+    </script>
+    <c:remove var="erroExcluir"/>
+</c:if>

@@ -40,7 +40,13 @@ GenericDao<Usuario> daoU;
             Usuario user = daoU.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("usuarioEditar", user);
         }else if(param.equals("apagar")){
-            daoU.remove(Long.parseLong(request.getParameter("id")));
+             try {
+                daoU.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                session.setAttribute("erroExcluir", true);
+                daoU.getEntityManager().clear();
+            }
         }else if(param.equals("listar_professores")){
             ArrayList<Usuario> professores=(ArrayList<Usuario>) daoU.listParamInteiro(Long.parseLong("1"));
             session.setAttribute("listaProfessores", professores);

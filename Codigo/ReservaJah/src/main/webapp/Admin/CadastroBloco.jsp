@@ -4,6 +4,7 @@
     Author     : Eduardo
 --%>
 <script language="javascript" src="../js/projeto.js"></script>
+<div id="div_mensagens" ></div>
 <form id="form">
     <div class="field">
         <input type="hidden" name="id" value="${blocoEditar.id}"/>
@@ -14,7 +15,6 @@
     <button type="button" onclick="voltarListarBloco('ListagemBlocos.jsp');" value="" class="btnCancelar">Cancelar</button>
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
-<div id="div_mensagens" ></div>
 <script>
     $(document).ready(function (){
         $("#form").validate({

@@ -9,6 +9,7 @@ import DAO.GenericDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.persistence.RollbackException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,11 +42,14 @@ public class BlocoServlet extends HttpServlet {
         } else if (param.equals("editar")) {
             Bloco bloco = dao.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("blocoEditar", bloco);
-//            RequestDispatcher rq=request.getRequestDispatcher("Admin/area_administrativa.jsp");
-//            request.setAttribute("blocoEditar", bloco);
-//            rq.forward(request, response);
-        }else if(param.equals("apagar")){
-            dao.remove(Long.parseLong(request.getParameter("id")));
+        } else if (param.equals("apagar")) {
+            try {
+                dao.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                dao.getEntityManager().clear();
+                session.setAttribute("erroExcluir", true);
+            }
         }
         response.sendRedirect("Admin/area_administrativa.jsp");
     }

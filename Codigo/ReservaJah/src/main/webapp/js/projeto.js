@@ -142,7 +142,7 @@ $(document).ready(function() {
             },
             success: function(ret) {
                 $('.modal').hide();
-                location.href='../ConsultarSala.jsp'
+                location.href = '../ConsultarSala.jsp'
             }
         });
     });
@@ -240,8 +240,11 @@ function cadastrarBloco() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Bloco editado com sucesso!!');
+                    else
+                        alert('Bloco cadastrado com sucesso!!');
                     $('.modal').hide();
-                    alert('Bloco cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemBlocos.jsp');
                 }
             });
@@ -261,8 +264,11 @@ function cadastrarTipoSala() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Tipo de sala editado com sucesso!!');
+                    else
+                        alert('Tipo de sala cadastrado com sucesso!!');
                     $('.modal').hide();
-                    alert('Tipo de sala cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemTipoSala.jsp');
                 }
             });
@@ -282,8 +288,11 @@ function cadastrarTipoUsuario() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Tipo de usuário editado com sucesso!!');
+                    else
+                        alert('Tipo de usuário cadastrado com sucesso!!');
                     $('.modal').hide();
-                    alert('Tipo de usuário cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemTipoUsuario.jsp');
                 }
             });
@@ -303,8 +312,11 @@ function cadastrarSala() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Sala editada com sucesso!!');
+                    else
+                        alert('Sala cadastrada com sucesso!!');
                     $('.modal').hide();
-                    alert('Sala cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemSala.jsp');
                 }
             });
@@ -324,8 +336,11 @@ function cadastrarUsuario() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Usuário editado com sucesso!!');
+                    else
+                        alert('Usuário cadastrado com sucesso!!');
                     $('.modal').hide();
-                    alert('Usuário cadastrado com sucesso!!');
                     $('#conteudo').load('ListagemUsuario.jsp');
                 }
             });
@@ -345,8 +360,11 @@ function cadastrarDisciplina() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Usuário editado com sucesso!!');
+                    else
+                        alert('Disciplina cadastrada com sucesso!!');
                     $('.modal').hide();
-                    alert('Disciplina cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemDisciplina.jsp');
                 }
             });
@@ -366,8 +384,11 @@ function cadastrarAula() {
                     $('.modal').show();
                 },
                 success: function(ret) {
+                    if ($('input[name=id]').val() != "")
+                        alert('Usuário editado com sucesso!!');
+                    else
+                        alert('Aula cadastrada com sucesso!!');
                     $('.modal').hide();
-                    alert('Aula cadastrada com sucesso!!');
                     $('#conteudo').load('ListagemAula.jsp');
                 }
             });
@@ -385,8 +406,11 @@ function cadastrarReserva() {
                 $('.modal').show();
             },
             success: function(ret) {
+                if ($('input[name=id]').val() != "")
+                    alert('Bloco editado com sucesso!!');
+                else
+                    alert('Reserva cadastrada com sucesso!!');
                 $('.modal').hide();
-                alert('Reserva cadastrada com sucesso!!');
                 voltarListarReserva('MinhaReservas.jsp');
             }
         });
@@ -504,7 +528,6 @@ function editarBloco(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Bloco editado com sucesso!!');
             $('#conteudo').load('CadastroBloco.jsp');
         }
     });
@@ -518,7 +541,6 @@ function editarTipoSala(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Tipo de sala editado com sucesso!!');
             $('#conteudo').load('CadastroTipoSala.jsp');
         }
     });
@@ -532,7 +554,6 @@ function editarTipoUsuario(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Tipo de usuário editado com sucesso!!');
             $('#conteudo').load('CadastroTipoUsuario.jsp');
         }
     });
@@ -546,7 +567,6 @@ function editarSala(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Sala editada com sucesso!!');
             telaCadastroSala();
         }
     });
@@ -560,7 +580,6 @@ function editarUsuario(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Usuário editado com sucesso!!');
             telaCadastroUsuario();
         }
     });
@@ -574,7 +593,6 @@ function editarDisciplina(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Disciplina editada com sucesso!!');
             telaCadastroDisciplina();
         }
     });
@@ -588,7 +606,6 @@ function editarAula(id) {
         },
         success: function(ret) {
             $('.modal').hide();
-            alert('Aula editada com sucesso!!');
             telaCadastroAula();
         }
     });
@@ -603,14 +620,13 @@ function apagarBloco(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Bloco excluido com sucesso!!');
                 $('.modal').hide();
                 voltarListarBloco('ListagemBlocos.jsp');
             }
         });
 }
 function apagarTipoSala(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir este tipo de sala ?");
     if (conf === true)
         $.ajax({
             url: '../TipoSalaServlet?op=apagar&id=' + id,
@@ -619,14 +635,13 @@ function apagarTipoSala(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Tipo de sala excluido com sucesso!!');
                 $('.modal').hide();
                 voltarListarTipoSala('ListagemTipoSala.jsp');
             }
         });
 }
 function apagarTipoUsuario(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir este tipo de usuário ?");
     if (conf === true)
         $.ajax({
             url: '../TipoUsuarioServlet?op=apagar&id=' + id,
@@ -635,14 +650,13 @@ function apagarTipoUsuario(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Tipo de usuário excluido com sucesso!!');
                 $('.modal').hide();
                 voltarListarTipoUsuario('ListagemTipoUsuario.jsp');
             }
         });
 }
 function apagarSala(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir está sala ?");
     if (conf === true)
         $.ajax({
             url: '../SalaServlet?op=apagar&id=' + id,
@@ -651,14 +665,13 @@ function apagarSala(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Sala excluida com sucesso!!');
                 $('.modal').hide();
                 voltarListarSala('ListagemSala.jsp');
             }
         });
 }
 function apagarUsuario(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir este usuário ?");
     if (conf === true)
         $.ajax({
             url: '../UsuariosServlet?op=apagar&id=' + id,
@@ -667,14 +680,13 @@ function apagarUsuario(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Usuário excluido com sucesso!!');
                 $('.modal').hide();
                 voltarListarUsuario('ListagemUsuario.jsp');
             }
         });
 }
 function apagarDisciplina(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir está disciplina ?");
     if (conf === true)
         $.ajax({
             url: '../DisciplinaServlet?op=apagar&id=' + id,
@@ -683,14 +695,13 @@ function apagarDisciplina(id) {
                 $('.modal').show();
             },
             success: function(ret) {
-                alert('Disciplina excluida com sucesso!!');
                 $('.modal').hide();
                 voltarListarDisciplina('ListagemDisciplina.jsp');
             }
         });
 }
 function apagarAula(id) {
-    var conf = confirm("Você relamente deseja excluir este bloco ?");
+    var conf = confirm("Você relamente deseja excluir está aula ?");
     if (conf === true)
         $.ajax({
             url: '../AulaServlet?op=apagar&id=' + id,
@@ -793,23 +804,38 @@ function setaColuna() {
 }
 function mudarCor() {
     var aux = linhaI;
+    var ver = false;
+    linhaF = $('#horaFim').val();
     for (var i = 1; i <= linhaF; i++) {
         var att = "#" + aux + coluna;
-        $(att).css('background-color', 'white');
+        if ($(att).css('background-color') != "rgba(0, 0, 0, 0)")
+            ver = true;
         aux++;
     }
-    linhaF = $('#horaFim').val();
-    var aux = linhaI;
-    for (var i = 1; i <= linhaF; i++) {
-        var att = "#" + aux + coluna;
-        $(att).css('background-color', 'blue');
-        aux++;
+    if (!ver) {
+        for (var i = 1; i <= linhaF; i++) {
+            var att = "#" + aux + coluna;
+            $(att).css('background-color', 'white');
+            aux++;
+        }
+        aux = linhaI;
+        linhaF = $('#horaFim').val();
+        var aux = linhaI;
+        for (var i = 1; i <= linhaF; i++) {
+            var att = "#" + aux + coluna;
+            $(att).css('background-color', 'blue');
+            aux++;
+        }
+    } else {
+        alert('Selecione um horario válido!');
+        $('#horaInicio option[value="default"]').attr({selected: "selected"});
+        $('#horaFim option[value="default"]').attr({selected: "selected"});
     }
 }
 
 function listaAulasSala() {
     $.ajax({
-        url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val()+'&data='+$('#dataInicio').val(),
+        url: '../AulaServlet?op=listaAulaSala&id=' + $('#sala').val() + '&data=' + $('#dataInicio').val(),
         type: 'GET',
         beforeSend: function(ret) {
             $('.modal').show();

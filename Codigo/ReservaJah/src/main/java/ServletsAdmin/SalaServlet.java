@@ -44,7 +44,13 @@ public class SalaServlet extends HttpServlet {
             Sala sala = daoS.get(Long.parseLong(request.getParameter("id")));
             session.setAttribute("salaEditar", sala);
         }else if(param.equals("apagar")){
-            daoS.remove(Long.parseLong(request.getParameter("id")));
+            try {
+                daoS.remove(Long.parseLong(request.getParameter("id")));
+                session.setAttribute("sucessoExcluir", true);
+            } catch (Exception e) {
+                session.setAttribute("erroExcluir", true);
+                daoS.getEntityManager().clear();
+            }
         }else if(param.equals("listaSalasBloco")){
             ArrayList<Sala> listaSalaBloco=(ArrayList<Sala>) daoS.listSalasBloco(Long.parseLong(request.getParameter("id")));
             session.setAttribute("idBloco", Long.parseLong(request.getParameter("id")));
