@@ -4,6 +4,7 @@
     Author     : Eduardo
 --%>
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Tipo de Usu&aacute;rio</h5>
 <form id='form' action="../TipoUsuarioServlet" method="post">
     <div class="field">
         <input type="hidden" name="id" value="${tipoUsuarioEditar.id}"/>

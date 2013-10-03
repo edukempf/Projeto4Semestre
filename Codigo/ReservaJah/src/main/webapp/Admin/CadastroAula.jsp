@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Aula</h5>
 <form id="form">
     <input type="hidden" name="idAula" value="${aulaEditar.id}"/>
     <h5 class="title">Gerenciar Aulas</h5>

@@ -6,6 +6,7 @@
 <script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Sala</h5>
 <form id='form' action="../SalaServlet" method="post">
     <input type="hidden" name="id" value="${salaEditar.id}"/>
     <div class="field">

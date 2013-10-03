@@ -7,6 +7,7 @@
 <div id="div_mensagens" ></div>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<h5 class="title">Cadastrar Disciplina</h5>
 <script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <form id="form" action="../DisciplinaServlet" method="post">

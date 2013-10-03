@@ -9,6 +9,7 @@
 <script language="javascript" src="../js/projeto.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Usu&aacute;rio</h5>
 <form id="form" action="../UsuariosServlet" method="post">
     <input type="hidden" name="id" value="${usuarioEditar.id}"/>
     <div class="field">
@@ -52,35 +53,35 @@
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-        $.validator.addMethod("valueNotEquals", function(value, element, arg) {
-            return arg != value;
-        }, "Value must not equal arg.");
-        $(document).ready(function() {
-            $("#form").validate({
-                errorLabelContainer: $('#div_mensagens'),
-                rules: {
-                    nome: {required: true, minlength: 3, maxlength: 50},
-                    senha: {required: true, minlength: 6, maxlength: 12},
-                    registro: {required: true, minlength: 6, maxlength: 50},
-                    email: {required: true, email:true, minlength: 6, maxlength: 50},
-                    tipo: {valueNotEquals: "default"}
-                },
-                messages: {
-                    nome: {required: "Digite um nome para o Usuário. Ex: João da Silva", minlength: "O nome deve ter no mínimo 3 dígitos", maxlength: "O nome deve ter no máximo 50 dígitos"},
-                    registro: {required: "Digite um registro para o Usuário. Ex: 123456", minlength: "O registro deve ter no mínimo 6 dígitos", maxlength: "O registro deve ter no máximo 50 dígitos"},
-                    senha: {required: "Digite uma senha para o usuário. Ex: 123", minlength: "A senha deve ter no mínimo 6 dígitos", maxlength: "A senha deve ter no máximo 12 dígitos"},
-                    email: {required: "Digite um email para o usuário. Ex: reservajah@gmail.com",email:"Digite um email válido!", minlength: "Participantes tem no mínimo 1 dígito", maxlength: "Participantes tem no máximo 3 dígito"},
-                    tipo: {valueNotEquals: "Por favor selecione um tipo de usuário."}
-                },
-                submitHandler: function() {
-                    cadastrarUsuario();
-                }
-
-            });
-        });
-        function envia() {
-            if ($('#form').valid()) {
+    $.validator.addMethod("valueNotEquals", function(value, element, arg) {
+        return arg != value;
+    }, "Value must not equal arg.");
+    $(document).ready(function() {
+        $("#form").validate({
+            errorLabelContainer: $('#div_mensagens'),
+            rules: {
+                nome: {required: true, minlength: 3, maxlength: 50},
+                senha: {required: true, minlength: 6, maxlength: 12},
+                registro: {required: true, minlength: 6, maxlength: 50},
+                email: {required: true, email:true, minlength: 6, maxlength: 50},
+                tipo: {valueNotEquals: "default"}
+            },
+            messages: {
+                nome: {required: "Digite um nome para o Usuário. Ex: João da Silva", minlength: "O nome deve ter no mínimo 3 dígitos", maxlength: "O nome deve ter no máximo 50 dígitos"},
+                registro: {required: "Digite um registro para o Usuário. Ex: 123456", minlength: "O registro deve ter no mínimo 6 dígitos", maxlength: "O registro deve ter no máximo 50 dígitos"},
+                senha: {required: "Digite uma senha para o usuário. Ex: 123", minlength: "A senha deve ter no mínimo 6 dígitos", maxlength: "A senha deve ter no máximo 12 dígitos"},
+                email: {required: "Digite um email para o usuário. Ex: reservajah@gmail.com",email:"Digite um email válido!", minlength: "Participantes tem no mínimo 1 dígito", maxlength: "Participantes tem no máximo 3 dígito"},
+                tipo: {valueNotEquals: "Por favor selecione um tipo de usuário."}
+            },
+            submitHandler: function() {
                 cadastrarUsuario();
             }
+
+        });
+    });
+    function envia() {
+        if ($('#form').valid()) {
+            cadastrarUsuario();
         }
+    }
 </script>

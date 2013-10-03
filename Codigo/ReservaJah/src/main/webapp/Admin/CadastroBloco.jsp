@@ -5,6 +5,7 @@
 --%>
 <script language="javascript" src="../js/projeto.js"></script>
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Bloco</h5>
 <form id="form">
     <div class="field">
         <input type="hidden" name="id" value="${blocoEditar.id}"/>

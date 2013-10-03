@@ -4,6 +4,7 @@
     Author     : Eduardo
 --%>
 <div id="div_mensagens" ></div>
+<h5 class="title">Cadastrar Tipo de Sala</h5>
 <form id='form' action="../TipoSalaServlet" method="post">
     <div class="field">
         <input type="hidden" name="id" value="${tipoSalaEditar.id}"/>

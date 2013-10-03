@@ -5,8 +5,13 @@
     Description:
         Purpose of the stylesheet follows.
 */
-.error{
-    border: solid  1px red;
+
+label.error {
+    color: #D8000C;
+    border: solid  1px red; 
+    background-color: #FFBABA; 
+    font-size: 10px;
+    width: 200px;
 }
 root { 
     display: block;
@@ -293,5 +298,5 @@ select, input{
 
 .tableLista{
     width: 200px;
-    
+
 }
