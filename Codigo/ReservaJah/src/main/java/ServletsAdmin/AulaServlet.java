@@ -45,6 +45,7 @@ public class AulaServlet extends HttpServlet {
         Horario[] horarios = Horario.values();
         if (param.equals("listar")) {
             session.setAttribute("idBloco", null);
+            session.setAttribute("idDisciplina", null);
             session.setAttribute("idHor", null);
             session.setAttribute("horaFim", null);
             session.setAttribute("diaSelecionado", null);
@@ -79,6 +80,7 @@ public class AulaServlet extends HttpServlet {
             session.setAttribute("diaInicio", request.getParameter("diaInicio"));
             session.setAttribute("diaFim", request.getParameter("diaFim"));
             session.setAttribute("idHor", Integer.parseInt(request.getParameter("id")));
+            session.setAttribute("idDisciplina", Integer.parseInt(request.getParameter("disciplina")));
             session.setAttribute("diaSelecionado", Integer.parseInt(request.getParameter("dia")));
         }
         if (param.equals("listaAulaSala")) {

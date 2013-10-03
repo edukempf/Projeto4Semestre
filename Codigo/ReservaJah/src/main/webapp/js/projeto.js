@@ -330,7 +330,7 @@ function cadastrarUsuario() {
         type: 'POST',
         success: function(ret) {
             $.ajax({
-                url: '../Usuari2osServlet?op=listar',
+                url: '../UsuariosServlet?op=listar',
                 type: 'GET',
                 beforeSend: function(ret) {
                     $('.modal').show();
@@ -361,7 +361,7 @@ function cadastrarDisciplina() {
                 },
                 success: function(ret) {
                     if ($('input[name=id]').val() != "")
-                        alert('Usuário editado com sucesso!!');
+                        alert('Disciplina editada com sucesso!!');
                     else
                         alert('Disciplina cadastrada com sucesso!!');
                     $('.modal').hide();
@@ -384,8 +384,8 @@ function cadastrarAula() {
                     $('.modal').show();
                 },
                 success: function(ret) {
-                    if ($('input[name=id]').val() != "")
-                        alert('Usuário editado com sucesso!!');
+                    if ($('input[name=idAula]').val() != "")
+                        alert('Aula editada com sucesso!!');
                     else
                         alert('Aula cadastrada com sucesso!!');
                     $('.modal').hide();
@@ -406,9 +406,6 @@ function cadastrarReserva() {
                 $('.modal').show();
             },
             success: function(ret) {
-                if ($('input[name=id]').val() != "")
-                    alert('Bloco editado com sucesso!!');
-                else
                     alert('Reserva cadastrada com sucesso!!');
                 $('.modal').hide();
                 voltarListarReserva('MinhaReservas.jsp');
@@ -754,6 +751,7 @@ function listaSala2() {
         },
         success: function(ret) {
             $('.modal').hide();
+            voltarListarDisciplina('ReservarSala.jsp');
         }
     });
 }
@@ -766,6 +764,7 @@ function listaSala3() {
         },
         success: function(ret) {
             $('.modal').hide();
+            location.reload();
         }
     });
 }
@@ -808,7 +807,7 @@ function mudarCor() {
     linhaF = $('#horaFim').val();
     for (var i = 1; i <= linhaF; i++) {
         var att = "#" + aux + coluna;
-        if ($(att).css('background-color') != "rgba(0, 0, 0, 0)")
+        if ($(att).css('background-color') != "rgba(0, 0, 0, 0)" && $(att).css('background-color') != "rgba(0, 0, 255)")
             ver = true;
         aux++;
     }
@@ -828,8 +827,8 @@ function mudarCor() {
         }
     } else {
         alert('Selecione um horario válido!');
-        $('#horaInicio option[value="default"]').attr({selected: "selected"});
-        $('#horaFim option[value="default"]').attr({selected: "selected"});
+        $('#horaInicio option[value="0"]').attr({selected: "selected"});
+            $('#horaFim option[value="0"]').attr({selected: "selected"});
     }
 }
 
@@ -848,7 +847,7 @@ function listaAulasSala() {
 }
 function listaAulasSala2() {
     $.ajax({
-        url: '../ReservaServlet?op=listaAulaSala&id=' + $('#sala').val() + '&data=' + $('#dataInicio').val(),
+        url: '../ReservaServlet?op=listaAulaSala&id=' + $('#bloco').val() + '&data=' + $('#dataInicio').val(),
         type: 'GET',
         beforeSend: function(ret) {
             $('.modal').show();

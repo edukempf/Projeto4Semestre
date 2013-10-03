@@ -23,13 +23,13 @@
             <select id="bloco" name="bloco" onchange="listaSala2();">
                 <c:choose>
                     <c:when test="${listaBloco.size()!=0}">
-                        <option value="default">Selecione um bloco</option>
+                        <option value="0">Selecione um bloco</option>
                         <c:forEach items="${listaBloco}" var="bloco">
                             <option value="${bloco.id}" ${idBloco == bloco.id? "selected" :""} >${bloco.nome}</option>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <option value="default">Selecione o dia antes</option>
+                        <option value="0">Selecione o dia antes</option>
                     </c:otherwise>
                 </c:choose>
             </select>
@@ -41,13 +41,13 @@
             <select id="sala" name="sala" onchange="listaAulasSala2();">
                 <c:choose>
                     <c:when test="${listaSalaBloco.size()!=0}">
-                        <option value="default">Selecione uma sala</option>
+                        <option value="0">Selecione uma sala</option>
                         <c:forEach items="${listaSalaBloco}" var="sala">
                             <option value="${sala.id}" ${idSala == sala.id? "selected" :""} >${sala.nome}</option>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <option value="default">Cadastre uma sala neste bloco antes</option>
+                        <option value="0">Cadastre uma sala neste bloco antes</option>
                     </c:otherwise>
                 </c:choose>
             </select>            
@@ -57,7 +57,7 @@
         <div class="field">
             <label for="disciiplina">Disciplina:</label>
             <select id="disciplina" name="disciplina" onchange="">
-                <option value="default">Selecione a disciplina</option>
+                <option value="0">Selecione a disciplina</option>
                 <c:choose>
                     <c:when test="${listaDisciplina.size()!=0}">
                         <c:forEach items="${listaDisciplina}" var="disciplina" varStatus="aa">
@@ -65,7 +65,7 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <option value="default">Selecione o inicio</option>
+                        <option value="0">Selecione o inicio</option>
                     </c:otherwise>
                 </c:choose>
             </select>
@@ -73,7 +73,7 @@
         <div class="field">
             <label for="horaInicio">Hora inicio da reserva:</label>
             <select id="horaInicio" name="hInicio" onchange="listaNovoHorario2();">
-                <option value="default">Selecione o horario de inicio</option>
+                <option value="0">Selecione o horario de inicio</option>
                 <c:forEach items="${horarios}" var="horario" varStatus="aa">
                     <option value="${aa.count}" ${aulaEditar.inicio == horario? "selected" :""} ${idHor == aa.count? "selected" :""}><c:out value="${horario}"/></option>
                 </c:forEach>
@@ -82,7 +82,7 @@
         <div class="field">
             <label for="horaFim">Hora fim da reserva</label>
             <select id="horaFim" name="horaFim" onchange="mudarCor();">
-                <option value="default">Selecione o horario final</option>
+                <option value="0">Selecione o horario final</option>
                 <c:choose>
                     <c:when test="${horaFim.size()!=0}">
                         <c:forEach items="${horaFim}" var="horario" varStatus="aa">
@@ -90,7 +90,7 @@
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <option value="default">Selecione o inicio</option>
+                        <option value="0">Selecione o inicio</option>
                     </c:otherwise>
                 </c:choose>
             </select>
@@ -187,11 +187,11 @@
                     $("#form").validate({
                         errorLabelContainer: $('#div_mensagens'),
                         rules: {
-                            bloco: {valueNotEquals: "default"},
-                            sala: {valueNotEquals: "default"},
-                            disciplina: {valueNotEquals: "default"},
-                            horaFim: {valueNotEquals: "default"},
-                            hInicio: {valueNotEquals: "default"},
+                            bloco: {valueNotEquals: "0"},
+                            sala: {valueNotEquals: "0"},
+                            disciplina: {valueNotEquals: "0"},
+                            horaFim: {valueNotEquals: "0"},
+                            hInicio: {valueNotEquals: "0"},
                             dataInicio: {required: true}
                         },
                         messages: {

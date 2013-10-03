@@ -61,11 +61,11 @@
             <c:choose>
                 <c:when test="${disciplinas.size()!=0}">
                     <c:forEach items="${disciplinas}" var="disciplina" varStatus="aa">
-                        <option value="${disciplina.id}" ${aulaEditar.disciplina.id == disciplina.id? "selected" :""}>${disciplina.nome}</option>
+                        <option value="${disciplina.id}" ${aulaEditar.disciplina.id == disciplina.id? "selected" :""} ${idDisciplina == disciplina.id? "selected" :""}>${disciplina.nome}</option>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
-                    <option value="default">Cadastre uma disciplina antes.</option>
+                    <option value="0">Cadastre uma disciplina antes.</option>
                 </c:otherwise>
             </c:choose>
         </select>
@@ -194,7 +194,7 @@
                     }
                 }
                 $("#form").validate({
-                    errorLabelContainer: $('#div_mensagens'),
+//                    errorLabelContainer: $('#div_mensagens'),
                     rules: {
                         bloco: {valueNotEquals: "default"},
                         sala: {valueNotEquals: "default"},

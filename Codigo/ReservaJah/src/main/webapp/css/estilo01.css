@@ -5,7 +5,9 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+.error{
+    border: solid  1px red;
+}
 root { 
     display: block;
 }
@@ -85,12 +87,9 @@ body {
     text-align:left;
 }
 #conteudo table{
-    margin-top: 15px;
-    margin-right: 50px;
-    margin-left: 50px;
     border-collapse: collapse;
     background-color: #fff;
-    width: 50%;
+    width: 600px;
     text-align: center;
 }
 #conteudo table td{

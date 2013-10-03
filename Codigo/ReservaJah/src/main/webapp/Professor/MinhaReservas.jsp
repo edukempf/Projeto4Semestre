@@ -35,6 +35,11 @@
         <c:otherwise>
             <tr>
                 <td>Nenhuma reserva feita</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </c:otherwise>
     </c:choose>

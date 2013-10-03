@@ -37,6 +37,12 @@
         <c:otherwise>
             <tr>
                 <td>Nenhuma aula cadastrada</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </c:otherwise>
     </c:choose>

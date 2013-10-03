@@ -62,7 +62,7 @@
                     nome: {required: true, minlength: 3, maxlength: 50},
                     senha: {required: true, minlength: 6, maxlength: 12},
                     registro: {required: true, minlength: 6, maxlength: 50},
-                    email: {required: true, email:true, minlength: 6, maxlength: 12},
+                    email: {required: true, email:true, minlength: 6, maxlength: 50},
                     tipo: {valueNotEquals: "default"}
                 },
                 messages: {
