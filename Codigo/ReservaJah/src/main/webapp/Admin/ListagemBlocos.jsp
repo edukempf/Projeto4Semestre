@@ -42,13 +42,13 @@
 </table>
 <button type="button" onclick="telaCadastroBloco();" value="" class="btnAdicionar">Adicionar</button>
 <script type="text/javascript">
-        $(document).ready(function() {
-            $('#listaElementos').dataTable({
-                "bScrollCollapse": true,
-                "bPaginate": true,
-                "bJQueryUI": true
-            });
+    $(document).ready(function() {
+        $('#listaElementos').dataTable({
+            "bScrollCollapse": true,
+            "bPaginate": true,
+            "bJQueryUI": true
         });
+    });
 </script>
 <c:if test="${sucessoExcluir}">
     <script type="text/javascript">

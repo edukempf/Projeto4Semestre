@@ -17,7 +17,7 @@
             <th>Inicio</th>
             <th>Fim</th>
             <th>Editar</th>
-                        <th>Remover</th>
+            <th>Remover</th>
         </tr>
     </thead>
     <c:choose>
@@ -54,17 +54,17 @@
             <th>Inicio</th>
             <th>Fim</th>
             <th>Editar</th>
-                        <th>Remover</th>
+            <th>Remover</th>
         </tr>
     </tfoot>
 </table>
 <button type="button" onclick="telaCadastroAula();" value="" class="btnAdicionar">Adicionar</button>
 <script type="text/javascript">
-                        $(document).ready(function() {
-                            $('#listaElementos').dataTable({
-                                "bScrollCollapse": true,
-                                "bPaginate": true,
-                                "bJQueryUI": true
-                            });
-                        });
+    $(document).ready(function() {
+        $('#listaElementos').dataTable({
+            "bScrollCollapse": true,
+            "bPaginate": true,
+            "bJQueryUI": true
+        });
+    });
 </script>
