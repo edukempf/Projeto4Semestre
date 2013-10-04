@@ -18,12 +18,15 @@
 <script>
         $(document).ready(function() {
             $("#form").validate({
-                errorLabelContainer: $('#div_mensagens'),
+//                errorLabelContainer: $('#div_mensagens'),
                 rules: {
                     descricao: {required: true, minlength: 3, maxlength: 50}
                 },
                 messages: {
                     descricao: {required: "Digite uma descrição para o tipo de usuário. Ex: Professor", minlength: "A descrição deve ter no mínimo 3 dígitos", maxlength: "A descrição deve ter no máximo 50 dígitos"}
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element); // default function
                 },
                 submitHandler: function() {
                     cadastrarTipoUsuario();

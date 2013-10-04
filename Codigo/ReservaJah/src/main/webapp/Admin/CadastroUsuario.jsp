@@ -58,7 +58,7 @@
     }, "Value must not equal arg.");
     $(document).ready(function() {
         $("#form").validate({
-            errorLabelContainer: $('#div_mensagens'),
+//            errorLabelContainer: $('#div_mensagens'),
             rules: {
                 nome: {required: true, minlength: 3, maxlength: 50},
                 senha: {required: true, minlength: 6, maxlength: 12},
@@ -73,6 +73,9 @@
                 email: {required: "Digite um email para o usuário. Ex: reservajah@gmail.com",email:"Digite um email válido!", minlength: "Participantes tem no mínimo 1 dígito", maxlength: "Participantes tem no máximo 3 dígito"},
                 tipo: {valueNotEquals: "Por favor selecione um tipo de usuário."}
             },
+            errorPlacement: function(error, element) {
+                    error.insertAfter(element); // default function
+                },
             submitHandler: function() {
                 cadastrarUsuario();
             }

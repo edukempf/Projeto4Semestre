@@ -17,24 +17,27 @@
     <button type="button" onclick="envia();" value="" class="btnConfirmar">Confirmar</button>
 </form>
 <script>
-    $(document).ready(function (){
-        $("#form").validate({
-            errorLabelContainer: $('#div_mensagens'),
-            rules: {
-                nome: {required: true, minlength: 6, maxlength: 50}
-            },
-            messages: {
-                nome: {required: "Digite um nome para o bloco. Ex: Bloco X", minlength: "O nome deve ter no mínimo 6 dígitos", maxlength: "O nome deve ter no máximo 50 dígitos"}
-            },
-            submitHandler: function() {
+        $(document).ready(function() {
+            $("#form").validate({
+//                errorLabelContainer: $('#div_mensagens'),
+                rules: {
+                    nome: {required: true, minlength: 6, maxlength: 50}
+                },
+                messages: {
+                    nome: {required: "Digite um nome para o bloco. Ex: Bloco X", minlength: "O nome deve ter no mínimo 6 dígitos", maxlength: "O nome deve ter no máximo 50 dígitos"}
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element); // default function
+                },
+                submitHandler: function() {
+                    cadastrarBloco();
+                }
+
+            });
+        });
+        function envia() {
+            if ($('#form').valid()) {
                 cadastrarBloco();
             }
-
-        });
-    });
-    function envia(){
-        if($('#form').valid()){
-            cadastrarBloco();
         }
-    }
 </script>

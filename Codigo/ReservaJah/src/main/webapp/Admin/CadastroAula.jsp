@@ -51,7 +51,6 @@
         <label for="diaInicio">Data de inicio:</label>
         <input type="text" name="diaInicio"id="dataInicio" onchange="listaAulasSala();" value="<c:out value="${dataInicio==null?diaInicio : dataInicio}"/>"/>
 
-
         <label for="diaFim">Data de fim:</label>
         <input type="text" name="diaFim" id="dataFim" value="<c:out value="${dataFim==null?diaFim:dataFim}"/>"/>
     </div><br/>
@@ -90,6 +89,7 @@
             </c:forEach>
         </select>
         <p class="hint">Selecione um horario como parametro da consulta</p>
+        <br />
         <label for="horaFim">Hora fim da aula:</label>
         <select id="horaFim" name="horaFim" onchange="mudarCor();">
             <option value="default">Selicione um Horário</option>
@@ -215,6 +215,9 @@
                         hInicio: {valueNotEquals: "Por favor selecione o horario final"},
                         diaInicio: {required: "Informe a data inicial."},
                         diaFim: {required: "Informe a data final."}
+                    },
+                    errorPlacement: function(error, element) {
+                        error.insertAfter(element); // default function
                     },
                     submitHandler: function() {
                         cadastrarAula();

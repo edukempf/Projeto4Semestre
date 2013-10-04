@@ -85,7 +85,7 @@ body {
 }
 #conteudo {
     overflow:hidden;
-    width:600px;
+    width:700px;
     margin:0 auto;
     padding:10px 10px 10px;
     border:0px ;
@@ -94,7 +94,7 @@ body {
 #conteudo table{
     border-collapse: collapse;
     background-color: #fff;
-    width: 600px;
+    width: 700px;
     text-align: center;
 }
 #conteudo table td{
@@ -257,7 +257,6 @@ label {
     font-family: Arial, Verdana;
     text-shadow: 2px 2px 2px #ccc;
     display: block;
-    float: left; 
     margin-right:15px;
     font-weight: bold;
     margin-right:10px;
@@ -278,6 +277,10 @@ label {
 .hint{
     display:none;
 }
+.field{
+    display: block;
+    float: none;
+}
 .field:hover .hint {
     position: absolute;
     display: block;
@@ -293,6 +296,7 @@ label {
 select, input{ 
     width: 220px;
     height: 20px;
+    float: left;
 }
 
 

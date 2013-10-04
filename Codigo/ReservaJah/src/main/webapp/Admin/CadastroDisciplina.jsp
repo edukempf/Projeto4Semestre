@@ -57,7 +57,7 @@
         });
         $(document).ready(function() {
             $("#form").validate({
-                errorLabelContainer: $('#div_mensagens'),
+//                errorLabelContainer: $('#div_mensagens'),
                 rules: {
                     nome: {required: true, minlength: 3, maxlength: 50},
                     abreviatura: {required: true, minlength: 2, maxlength: 10},
@@ -69,6 +69,9 @@
                     abreviatura: {required: "Digite uma abreviatura nome para a disciplina. Ex: LP", minlength: "O abreviatura deve ter no mínimo 2 dígitos", maxlength: "O abreviatura deve ter no máximo 10 dígitos"},
                     participantes: {required: "Digite o número de participantes da sala. Ex: 20", minlength: "Participantes tem no mínimo 1 dígito", maxlength: "Participantes tem no máximo 3 dígito"},
                     responsavel: {valueNotEquals: "Por favor selecione um responsável pela disciplina."}
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element); // default function
                 },
                 submitHandler: function() {
                     cadastrarDisciplina();

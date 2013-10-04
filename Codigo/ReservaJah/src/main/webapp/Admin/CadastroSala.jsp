@@ -66,7 +66,7 @@
         });
         $(document).ready(function() {
             $("#form").validate({
-                errorLabelContainer: $('#div_mensagens'),
+//                errorLabelContainer: $('#div_mensagens'),
                 rules: {
                     nome: {required: true, minlength: 3, maxlength: 50},
                     capacidade: {required: true, minlength: 1, maxlength: 4},
@@ -78,6 +78,9 @@
                     capacidade: {required: "Digite a capacidade da sala. Ex: 20", minlength: "A capacidade tem no mínimo 1 dígito", maxlength: "A capacidade tem no máximo 4 dígito"},
                     bloco: {valueNotEquals: "Por favor selecione um bloco."},
                     tipo: {valueNotEquals: "Por favor selecione um tipo de sala."}
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element); // default function
                 },
                 submitHandler: function() {
                     cadastrarSala();
